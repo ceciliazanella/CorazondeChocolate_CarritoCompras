@@ -27,7 +27,7 @@ let totalCompra = 0;
 /* Función para aplicar Descuento del 20% sobre el Costo Total de la compra mediante 
 un Código de Descuento.
 El Código de Descuento es cielodejupiter y sólo hay 3 oportunidades para introducirlo;
-sino no se aplica.
+sino, no se aplica.
 */
 function aplicarDescuento(total) {
     let intentos = 0;
@@ -58,7 +58,7 @@ function aplicarDescuento(total) {
 
             }
 
-        } 
+        }
 
     } while (intentos < 3);
 
@@ -69,7 +69,7 @@ alert("Bienvenido/a a la sección más dulce de Corazón de Chocolate ! :)");
 alert("Todas las opciones que están disponibles pueden ser para vos !\n También para que las obsequies y/o compartas con alguien más ! ;)");
 
 let confirmacion = window.confirm("Estás por entrar al --->\n Menú de Tortas Artesanales de Corazón de Chocolate !\n ¿Listo/a para elegir entre tus tortas favoritas?");
-
+// Si se acepta entrar al Menú se va a desplegar la lista de Productos (Tortas); sino, se sale //
 if (confirmacion) {
 
     do {
@@ -80,7 +80,7 @@ if (confirmacion) {
         let opcion;
 
         do {
-
+            // Busca los Productos (Tortas) que ya están almacenados y los muestra con su id, nombre y precio //
             opcion = parseInt(prompt("¿Cuál vas a llevar? ;)\n\n" +
                 tortasArtesanales.map((torta) => `${torta.id} - ${torta.nombre} $${torta.precio}`).join("\n")
                 + "\n\n0 - Finalizar Compra"));
@@ -117,7 +117,8 @@ if (confirmacion) {
                 unidades = parseInt(prompt(`¿Cuántas unidades de ${tortaSeleccionada.nombre} te gustaría comprar?`));
 
             } while (isNaN(unidades) || unidades <= 0);
-
+            /* Lo seleccionado se carga al Carrito una vez que se elije la cantidad 
+            de Unidades de cada Producto (Tortas) */
             carrito.push({
                 Producto: tortaSeleccionada.nombre,
                 Precio: tortaSeleccionada.precio,
@@ -139,12 +140,12 @@ if (confirmacion) {
             alert("Ops... :( La opción que seleccionaste no es válida... :S");
 
         };
-
+        // Para continuar eligiendo Productos (Tortas) //
         let continuar = window.confirm("¿Te gustaría sumar alguna torta más a tu compra?");
 
         if (!continuar) {
-
-            // Construir el detalle del carrito con un bucle for
+            /* Cuando ya no se opta por seguir sumando Productos (Tortas) 
+            se entrega el Detalle de la Compra */
             let detalleCompra = "DETALLE DE COMPRA\n\n";
 
             for (let i = 0; i < carrito.length; i++) {
@@ -171,7 +172,7 @@ if (confirmacion) {
     } while (true);
 
 } else {
-    
+
     console.log("Saliendo del Menú de Tortas Artesanales...");
     alert("Gracias por pasarte por acá ! Espero verte la próxima ;)");
 
