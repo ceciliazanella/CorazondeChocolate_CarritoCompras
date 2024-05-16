@@ -244,7 +244,7 @@ function eliminarTortaDelCarrito() {
 
     while (true) {
 
-        nombreTortaAEliminar = prompt(`¿Cuál es la Torta que queres eliminar?... :(\n\n Si te arrepentiste... ---> Presiona "Cancelar" !\n\n`).trim().toLowerCase();
+        nombreTortaAEliminar = prompt(`¿Cuál es la Torta que queres eliminar?... :(\n\n Si te arrepentiste... ---> Presiona "Cancelar" !\n\n`);
 
         if (nombreTortaAEliminar === null) {
 
@@ -328,7 +328,7 @@ function manejarMenu() {
 
     do {
 
-        let opcionMenu = prompt(";) ¿Qué estás queriendo hacer por acá? ------\n\n 1---> Buscar tu Torta favorita por su nombre.\n\n 2 --->> Ver el Menú de mis Tortas Artesanales disponibles.\n\n 0 --->>> Salir...\n\n");
+        let opcionMenu = prompt(";) ¿Qué estás queriendo hacer por acá? ------\n\n 1 ---> Buscar tu Torta favorita por su nombre.\n\n 2 --->> Ver el Menú de mis Tortas Artesanales disponibles.\n\n 0 --->>> Salir...\n\n");
         console.log("Se Ejecuta el Menú Principal...");
 
         if (opcionMenu === null || opcionMenu === "0") {
@@ -344,6 +344,7 @@ function manejarMenu() {
 
                 console.log("Saliendo del Sistema...");
                 alert("Gracias por pasarte por acá ! :)\n\n Espero verte la próxima por Corazón de Chocolate ;)");
+
             }
 
             finalizar = true;
@@ -384,7 +385,7 @@ function manejarMenu() {
 
                         nombreBuscado = nombreBuscado.trim().toLowerCase();
 
-                        const tortasFiltradasPorNombre = tortasArtesanales.filter(torta => torta.nombre.trim().toLowerCase().includes(nombreBuscado));
+                        let tortasFiltradasPorNombre = tortasArtesanales.filter(torta => torta.nombre.trim().toLowerCase().includes(nombreBuscado));
 
                         if (tortasFiltradasPorNombre.length > 0) {
 
@@ -398,7 +399,7 @@ function manejarMenu() {
 
                                 });
 
-                                let opcionSeleccionada = prompt(`Te puedo ofrecer las siguientes Tortas con el nombre "${nombreBuscado}" --->\n\n\n${opcionesTortas}\n---> Ahora seleccioná el número que corresponde a la Torta que queres agregar a tu Carrito ! ;)\n\n`);
+                                let opcionSeleccionada = prompt(`Te puedo ofrecer las siguientes Tortas con el nombre "${nombreBuscado}" --->\n\n\n${opcionesTortas}\n ---> Ahora seleccioná el número que corresponde a la Torta que queres agregar a tu Carrito ! ;)\n\n`);
 
                                 console.log("Se muestran los resultados de la búsqueda...");
 
