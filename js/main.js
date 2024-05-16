@@ -1,59 +1,145 @@
-/* 
-Tienda con Carrito de Ventas para Corazón de Chocolate - Pastelería Artesanal Creativa
-*/
 
 
-// Productos (Tortas) disponibles dentro de sección Tortas Artesanales | Identificados con un id | Con sus respectivos nombres y precios  //
-let tortasArtesanales = [
-    { id: 1, nombre: "Torta Lemmon Pie", precio: 16500 },
-    { id: 2, nombre: "Cheese Cake Frutos Rojos", precio: 26000 },
-    { id: 3, nombre: "Crumble de Manzana", precio: 16500 },
-    { id: 4, nombre: "Chocotorta", precio: 25000 },
-    { id: 5, nombre: "Tarta Frutal", precio: 16500 },
-    { id: 6, nombre: "Postre Balcarse", precio: 25000 },
-    { id: 7, nombre: "Torta Brownie Clásica", precio: 20000 },
-    { id: 8, nombre: "Torta Selva Negra", precio: 30000 },
-    { id: 9, nombre: "Torta Doble Oreo", precio: 26000 },
-    { id: 10, nombre: "Torta Explosión Oreo", precio: 26000 }
-];
+function Torta(id, nombre, precio, unidad) {
 
-// Carrito al que se le tendrían que ir agregando los Productos (Tortas) seleccionados //
+    this.id = id;
+    this.nombre = nombre;
+    this.precio = precio;
+    this.unidad = unidad;
+
+};
+
+
+const lemmonPie = new Torta(1, "Torta Lemmon Pie", 16500, 1);
+const cheeseCakeFrutosRojos = new Torta(2, "Cheese Cake Frutos Rojos", 26000, 1);
+const crumbleManzana = new Torta(3, "Crumble de Manzana", 16500, 1);
+const chocotorta = new Torta(4, "Chocotorta", 25000, 1);
+const tartaFrutal = new Torta(5, "Tarta Frutal", 16500, 1);
+const postreBalcarse = new Torta(6, "Postre Balcarse", 25000, 1);
+const brownieClasica = new Torta(7, "Torta Brownie Clásica", 20000, 1);
+const selvaNegra = new Torta(8, "Torta Selva Negra", 30000, 1);
+const dobleOreo = new Torta(9, "Torta Doble Oreo", 26000, 1);
+const explosionOreo = new Torta(10, "Torta Explosión Oreo", 26000, 1);
+
+
+const tortasArtesanales = [lemmonPie, cheeseCakeFrutosRojos, crumbleManzana, chocotorta, tartaFrutal, postreBalcarse, brownieClasica, selvaNegra, dobleOreo, explosionOreo];
+
+
 let carrito = [];
 
-/*Una vez seleccionados los Productos (Tortas) con sus respectivos precios 
-y después de saber cuántas unidades se agregan ---> Necesito calcular el Costo Total a pagar por la compra*/
 let totalCompra = 0;
 
-/* Función para aplicar Descuento del 20% sobre el Costo Total de la compra mediante 
-un Código de Descuento.
-El Código de Descuento es cielodejupiter y sólo hay 3 oportunidades para introducirlo;
-sino, no se aplica.
-*/
-function aplicarDescuento(total) {
-    let intentos = 0;
+
+function seguirComprando() {
+
+    let seguir = confirm("¿Te gustaría agregar alguna Torta más a tu Carrito? :)\n\n");
+
+    console.log("Continuación de la Compra...");
+
+    if (!seguir) {
+
+        finalizarCompra();
+
+        return false;
+    }
+
+    return true;
+
+}
+
+
+function solicitarUnidades(tortaNombre) {
+
+    let unidades;
+
     do {
 
-        const codigoDescuento = prompt("¿Tenés Código de Descuento? Ingresalo!");
+        let unidades = parseInt(prompt(`¿Cuántas unidades de ${tortaNombre} te gustaría sumar a tu Carrito? :)\n\n ---> Podés "Cancelar" si todavía no te decidís por agregar esta Torta a tu Carrito...\n\n`));
+
+        if (unidades === null) {
+
+            console.log("Se canceló la operación para ingresar cantidad/unidad/es del Objeto seleccionado.\n Volviendo al listado que arrojó la búsqueda...");
+            alert("Cancelamos tu operación.");
+
+            return null;
+
+        }
+
+        if (isNaN(unidades) || unidades <= 0) {
+
+            console.log("Se ingresó una cantidad inválida.");
+            alert("Mmm... :S Por favor, ingresá un número válido mayor que cero.");
+
+        }
+
+    } while (isNaN(unidades) || unidades <= 0);
+
+    return unidades;
+}
+
+function agregarAlCarrito(torta, unidades) {
+    let tortaExistente = carrito.find(item => item.Producto === torta.nombre);
+
+    if (tortaExistente) {
+        tortaExistente.Unidades += unidades;
+    } else {
+        carrito.push({
+            Producto: torta.nombre,
+            Precio: torta.precio,
+            Unidades: unidades,
+        });
+    }
+
+    totalCompra += unidades * torta.precio;
+
+    console.log(carrito);
+    alert(`Sumaste con éxito a tu Carrito tu ${torta.nombre} ! ;)\n\n
+    Llevás ${unidades} unidad/es :)\n\n
+    Total Precio Unitario: $ ${torta.precio}\n\n 
+    Total Precio a Pagar x ${unidades} unidad/es: ${" "}
+    $ ${unidades * torta.precio}\n\n`);
+}
+
+
+function aplicarDescuento(total) {
+
+    let intentos = 0;
+
+    do {
+
+        const codigoDescuento = prompt("¿Tenés Código de Descuento? Ingresalo ;) !\n\n");
+
+        console.log("Se solicita Código de Descuento.");
 
         if (codigoDescuento === "cielodejupiter") {
 
             let descuento = total * 0.2;
             let totalConDescuento = total - descuento;
 
-            console.log(`Descuento del 20% aplicado sobre el Costo Total\n El Descuento es de $${descuento}`);
-            alert(`Eso ! ;)\n ---> Tenés un 20% de Descuento en esta compra !\n Tu Descuento es de $${descuento}`);
+            console.log(`Código de Descuento válido. Se aplica Descuento del 20% sobre el Costo Total.\n\n El Descuento es de $ ${descuento}`);
+            alert(`Eso ! ;)\n\n ---> Tenés un 20% de Descuento en esta compra !\n\n Tu Descuento es de $ ${descuento}`);
+
             return totalConDescuento;
+
+        } else if (!codigoDescuento) {
+
+            console.log(`No cuenta con Código de Descuento. No se aplica Descuento.`);
+            alert("Ops ! No tenés Código de Descuento... :(");
+
+            return total;
 
         } else {
 
             console.log("El Código de Descuento ingresado es inválido");
             alert("Ouch ! :S Ese Código no está bien...");
+
             intentos++;
 
             if (intentos === 3) {
 
-                console.log("Excedió el número de número de intentos permitidos. No se aplica el Código de Descuento");
-                alert("Será en otra oportunidad ! :( Excediste el número de intentos permitidos.");
+                console.log("Excedió el número de intentos permitidos.\n\n No se aplica Descuento.");
+                alert("Será en otra oportunidad ! :(\n\n Excediste el número de intentos permitidos.");
+
                 return total;
 
             }
@@ -64,116 +150,366 @@ function aplicarDescuento(total) {
 
 }
 
-// Mensaje de Entrada al Menú de Tortas Artesanales //
-alert("Bienvenido/a a la sección más dulce de Corazón de Chocolate ! :)");
-alert("Todas las opciones que están disponibles pueden ser para vos !\n También para que las obsequies y/o compartas con alguien más ! ;)");
 
-let confirmacion = window.confirm("Estás por entrar al --->\n Menú de Tortas Artesanales de Corazón de Chocolate !\n ¿Listo/a para elegir entre tus tortas favoritas?");
-// Si se acepta entrar al Menú se va a desplegar la lista de Productos (Tortas); sino, se sale //
-if (confirmacion) {
+function finalizarCompra() {
+
+    mostrarDetalleCompra();
+
+    let continuarCompra = true;
 
     do {
 
-        alert("Genial !\n Te paso a mostrar el Menú de Tortas Artesanales disponibles ! ;)");
-        console.log(tortasArtesanales);
+        let opcion = parseInt(prompt("¿Y ahora cómo seguimos? :)\n\n ¿Qué te gustaría hacer?\n\n 1->> ¿Querés eliminar alguna Torta de tu Carrito? :(\n\n 2->> Finalizar la Compra ! ;)\n\n"));
 
-        let opcion;
+        switch (opcion) {
 
-        do {
-            // Busca los Productos (Tortas) que ya están almacenados y los muestra con su id, nombre y precio //
-            opcion = parseInt(prompt("¿Cuál vas a llevar? ;)\n\n" +
-                tortasArtesanales.map((torta) => `${torta.id} - ${torta.nombre} $${torta.precio}`).join("\n")
-                + "\n\n0 - Finalizar Compra"));
-
-            if (opcion === 0) {
-
-                console.log("Saliendo del Menú de Tortas Artesanales...");
-                alert("Gracias por pasarte por acá ! Espero verte la próxima ;)");
+            case 1:
+                eliminarTortaDelCarrito();
 
                 break;
 
-            } else if (!tortasArtesanales.find((torta) => torta.id === opcion)) {
+            case 2:
+                continuarCompra = false;
 
-                console.log("Se ingresó una opción que es inválida y/o no existe.")
-                alert("Ops ! :S No cuento con la opción que estás buscando :(\n Por favor, ingresa alguna de las opciones que figuran en el menú.");
+                break;
 
-            }
+            default:
+                alert("Mmm... esa no es una opción válida. Por favor, selecciona 1 o 2 :)...");
 
-        } while (isNaN(opcion) || opcion < 0 || opcion > tortasArtesanales.length);
-
-        if (opcion === 0) {
-
-            break;
+                break;
         }
 
-        let tortaSeleccionada = tortasArtesanales.find((torta) => torta.id === opcion);
+    } while (continuarCompra);
 
-        if (tortaSeleccionada) {
+    mostrarDetalleCompra();
+    totalCompra = aplicarDescuento(totalCompra);
 
-            let unidades;
+    let mensajeFinal = "El Total Final a Pagar por tu Compra es de $ " + totalCompra + "\n\n";
 
-            do {
+    console.log("Finalizando Compra...");
+    alert(mensajeFinal + "Gracias por Confiar y Comprar en Corazón de Chocolate ! :)\n\n");
 
-                unidades = parseInt(prompt(`¿Cuántas unidades de ${tortaSeleccionada.nombre} te gustaría comprar?`));
+    !confirmacion;
 
-            } while (isNaN(unidades) || unidades <= 0);
-            /* Lo seleccionado se carga al Carrito una vez que se elije la cantidad 
-            de Unidades de cada Producto (Tortas) */
-            carrito.push({
-                Producto: tortaSeleccionada.nombre,
-                Precio: tortaSeleccionada.precio,
-                Unidades: unidades,
-            });
+}
 
-            totalCompra += unidades * tortaSeleccionada.precio;
 
-            console.log(carrito);
-            alert(`Sumaste con éxito al carrito tu ${tortaSeleccionada.nombre} ! ;)\n\n
-            Llevás ${unidades} unidad/es,\n
-            Total Precio Unitario: $${tortaSeleccionada.precio},\n 
-            Total Precio a Pagar x ${unidades} unidades: ${" "}
-            $${unidades * tortaSeleccionada.precio}`);
+function mostrarDetalleCompra() {
+
+    let detalleCompra = ">>> DETALLE DE TU COMPRA --->\n\n";
+
+    for (let i = 0; i < carrito.length; i++) {
+
+        detalleCompra += `Producto: ${carrito[i].Producto}\n\n`;
+        detalleCompra += `Precio Unitario: $ ${carrito[i].Precio}\n\n`;
+        detalleCompra += `Unidades: ${carrito[i].Unidades}\n-----------\n`;
+        detalleCompra += `SubTotal: ${carrito[i].Precio * carrito[i].Unidades}\n\n>>> ---------------------- <<<\n\n\n`;
+    }
+
+    console.log(detalleCompra);
+    alert(detalleCompra);
+
+}
+
+
+function eliminarTortaDelCarrito() {
+
+    let mensaje = "Tu Carrito :) --->>>\n\n";
+
+    for (let i = 0; i < carrito.length; i++) {
+
+        mensaje += `-> Producto -> ${carrito[i].Producto}\n
+        Precio: $ ${carrito[i].Precio}\n
+        Unidad/es: ${carrito[i].Unidades}\n\n`;
+    }
+
+    alert(mensaje);
+
+    let nombreTortaAEliminar;
+    let tortaAEliminar;
+
+    while (true) {
+
+        nombreTortaAEliminar = prompt(`¿Cuál es la Torta que queres eliminar :( ...?\n\n (Si te arrepentiste ---> Presiona Cancelar !)\n\n`);
+
+        if (nombreTortaAEliminar === null) {
+
+            return;
+
+        } else if (nombreTortaAEliminar.trim() === "") {
+
+            alert("Por favor, ingresa el nombre de la Torta que querés eliminar !");
 
         } else {
 
-            console.log("La opción seleccionada es inválida.")
-            alert("Ops... :( La opción que seleccionaste no es válida... :S");
+            tortaAEliminar = carrito.find(torta => torta.Producto.toLowerCase().includes(nombreTortaAEliminar.toLowerCase()));
+
+            break;
+        }
+    }
+
+    if (tortaAEliminar) {
+
+        let unidadesAEliminar = parseInt(prompt(`¿Cuántas unidades de ${tortaAEliminar.Producto} queres eliminar?\n\n (1 - ${tortaAEliminar.Unidades})\n\n`));
+
+        if (unidadesAEliminar >= 1 && unidadesAEliminar <= tortaAEliminar.Unidades) {
+
+            tortaAEliminar.Unidades -= unidadesAEliminar;
+
+            totalCompra -= unidadesAEliminar * tortaAEliminar.Precio;
+
+            alert(`${unidadesAEliminar} unidad/es de ${tortaAEliminar.Producto} eliminadas con éxito de tu Carrito...`);
+
+        } else {
+
+            alert(":S La cantidad de unidades que ingresaste no es válida...");
+
+        }
+
+    } else {
+
+        alert("No encontré ninguna Torta con ese nombre en tu Carrito... :S");
+
+    }
+
+    continuarCompra = false;
+
+    return totalCompra;
+
+}
+
+
+function manejarTortaSeleccionada(torta) {
+
+    const unidades = solicitarUnidades(torta.nombre);
+
+    if (unidades === null) {
+
+        console.log("No se ingresaron unidad/es; no se prosigue a agregar/sumar el Objeto al Carrito.");
+        alert("No agregamos la Torta que seleccionaste a tu Carrito... :(");
+
+    } else {
+
+        agregarAlCarrito(torta, unidades);
+
+        hayTortaEnCarrito = true;
+
+        if (!seguirComprando()) {
+
+            finalizar = true;
 
         };
-        // Para continuar eligiendo Productos (Tortas) //
-        let continuar = window.confirm("¿Te gustaría sumar alguna torta más a tu compra?");
 
-        if (!continuar) {
-            /* Cuando ya no se opta por seguir sumando Productos (Tortas) 
-            se entrega el Detalle de la Compra */
-            let detalleCompra = "DETALLE DE COMPRA\n\n";
+    }
 
-            for (let i = 0; i < carrito.length; i++) {
-                detalleCompra += `Producto: ${carrito[i].Producto}\n`;
-                detalleCompra += `Precio Unitario: $${carrito[i].Precio}\n`;
-                detalleCompra += `Unidades: ${carrito[i].Unidades}\n\n`;
+}
+
+
+function manejarMenu() {
+
+    let hayTortaEnCarrito = false;
+
+    let finalizar = false;
+
+    do {
+
+        let opcionMenu = prompt(";) ¿Qué estás queriendo hacer por acá? ------\n\n1---> Buscar mi Torta favorita por su nombre.\n\n2 --->> Ver el Menú de las Tortas Artesanales disponibles.\n\n0 --->>> Salir...\n\n");
+        console.log("Se Ejecuta el Menú Principal...");
+
+        if (opcionMenu === null || opcionMenu === "0") {
+
+            if (hayTortaEnCarrito) {
+
+                finalizarCompra();
+
+                console.log("Saliendo del Sistema...");
+                alert("Ey ! Espero verte muy pronto por acá ! ;)");
+
+            } else {
+
+                console.log("Saliendo del Sistema...");
+                alert("Gracias por pasarte por acá ! :)\n\n Espero verte la próxima por Corazón de Chocolate ;)");
             }
 
-            console.log(detalleCompra);
-            alert(detalleCompra);
-
-            /* En caso de que se ingrese correctamente el Código de Descuento --->
-            Este se aplica sobre el Costo Total */
-            totalCompra = aplicarDescuento(totalCompra);
-
-            let mensajeFinal = "El Total Final a Pagar por tu Compra es de $" + totalCompra + "\n\n";
-
-            console.log("Saliendo del Menú de Tortas Artesanales...");
-            alert(mensajeFinal + "Gracias por comprar y confiar en Corazón de Chocolate ! :)");
+            finalizar = true;
 
             break;
         }
 
-    } while (true);
+        switch (opcionMenu) {
 
-} else {
+            case "1":
 
-    console.log("Saliendo del Menú de Tortas Artesanales...");
-    alert("Gracias por pasarte por acá ! Espero verte la próxima ;)");
+                let nombreBuscado;
+                let volverMenuPrincipal = false;
+
+                do {
+
+                    nombreBuscado = prompt(":) ¿Qué Torta estás buscando? --->\n\n Ingresá acá su nombre ! ;)\n\n");
+
+                    console.log("Se solicita nombre del producto a buscar.");
+
+                    if (nombreBuscado === "") {
+
+                        console.log("No se ingresó el nombre solicitado para buscar el producto.")
+                        alert("Ops ! No sé qué estás buscando... :S\n\n Por favor, ingresá algún nombre así te ayudo a buscar tu Torta Favorita...");
+
+                        volverMenuPrincipal = true;
+
+                    } else if (nombreBuscado === null) {
+
+                        console.log("Volviendo al Menú Principal...");
+                        alert("<--- Volvemos al Menú Principal !");
+
+                        volverMenuPrincipal = true;
+
+                        break;
+
+                    } else {
+
+                        nombreBuscado = nombreBuscado.trim().toLowerCase();
+
+                        const tortasFiltradasPorNombre = tortasArtesanales.filter(torta => torta.nombre.trim().toLowerCase().includes(nombreBuscado));
+
+                        if (tortasFiltradasPorNombre.length > 0) {
+
+                            do {
+
+                                let opcionesTortas = "";
+
+                                tortasFiltradasPorNombre.forEach((torta, index) => {
+
+                                    opcionesTortas += `${index + 1} >>> ${torta.nombre}\n\n`;
+
+                                });
+
+                                let opcionSeleccionada = prompt(`Te puedo ofrecer las siguientes Tortas con el nombre "${nombreBuscado}" --->\n\n\n${opcionesTortas}\n---> Ahora seleccioná el número que corresponde a la Torta que queres agregar a tu Carrito ! ;)\n\n`);
+
+                                console.log("Se muestran los resultados de la búsqueda...");
+
+                                if (opcionSeleccionada === "") {
+
+                                    console.log("No seleccionó y/o ingresó ninguna de las opciones que arrojó la búsqueda.");
+                                    alert("Ups ! :S No ingresaste ninguna de las opciones encontradas... :(");
+
+                                } else if (opcionSeleccionada === null) {
+
+                                    console.log("Volviendo a ejecutar el ingreso de búsqueda de producto por nombre...")
+                                    alert("<--- Volvamos a buscar opciones disponibles ! ;)");
+
+                                    volverMenuPrincipal = true;
+
+                                    break;
+
+                                } else {
+
+                                    opcionSeleccionada = parseInt(opcionSeleccionada);
+
+                                    if (opcionSeleccionada >= 1 && opcionSeleccionada <= tortasFiltradasPorNombre.length) {
+
+                                        let tortaSeleccionada = tortasFiltradasPorNombre[opcionSeleccionada - 1];
+
+                                        manejarTortaSeleccionada(tortaSeleccionada);
+
+                                    } else {
+
+                                        console.log("Opción seleccionada/ingresada no válida.");
+                                        alert("Mmm... La opción que ingresaste no es válida... :S\n\n Por favor, seleccioná alguno de los números que se corresponden con las Tortas encontradas ! ;)");
+
+                                    }
+
+                                }
+
+                            } while (true);
+
+                        } else {
+
+                            console.log("El nombre ingresado no se corresponde con ningún nombre propiedad de los Objetos del Array.");
+                            alert("Ups... :S No tengo ninguna Torta con ese nombre... :(");
+
+                            volverMenuPrincipal = true;
+
+                            break;
+                        }
+
+                    }
+
+                } while (volverMenuPrincipal);
+
+                break;
+
+
+            case "2":
+
+                let confirmacion = confirm("Estás por entrar al --->\n\n Menú de Tortas Artesanales de Corazón de Chocolate !\n\n ¿Listo/a para elegir entre tus tortas favoritas?");
+
+                console.log("Aviso de entrada al Menú de Tortas Artesanales.");
+
+                if (confirmacion) {
+
+                    while (true) {
+
+                        alert("Te paso a mostrar el Menú de Tortas Artesanales disponibles ! ;)");
+                        console.log(tortasArtesanales);
+
+                        let opcion = prompt("¿Cuál vas a llevar? ;)\n\n\n" +
+                            tortasArtesanales.map((torta, index) => `${index + 1} -> ${torta.nombre} $ ${torta.precio}\n\n`).join("\n"));
+
+                        if (opcion === null) {
+
+                            console.log("Volviendo al Menú Principal...")
+                            alert("<--- Volvemos al Menú Principal !");
+
+                            break;
+                        }
+
+                        opcion = parseInt(opcion);
+
+                        if (isNaN(opcion) || opcion < 1 || opcion > tortasArtesanales.length) {
+
+                            console.log("Se ingresó una opción inválida.")
+                            alert("Ops ! :S No tengo la opción que estás buscando :(\n\n Por favor, ingresá alguna de las opciones que figuran en el Menú...");
+
+                            continue;
+                        }
+
+                        let tortaSeleccionada = tortasArtesanales[opcion - 1];
+
+                        if (tortaSeleccionada) {
+
+                            manejarTortaSeleccionada(tortaSeleccionada);
+
+                            break;
+
+                        }
+
+                    }
+
+                } else {
+
+                    console.log("Volviendo al Menú Principal...")
+                    alert("<--- Mmm... Volvemos al Menú Principal !");
+
+                }
+
+                break;
+
+
+            default:
+
+                console.log("Se ingresó una opción inválida.")
+                alert("Mmm... esa no es una opción válida :S\n\n Elegí alguna de las opciones disponibles, por favor !");
+
+
+        }
+
+    } while (!finalizar);
 
 }
+
+
+alert("Bienvenido/a a la sección más dulce de Corazón de Chocolate ! :)");
+alert("Todas las opciones que están disponibles pueden ser para vos !\n\n También para que las obsequies y/o compartas con alguien más ! ;)");
+console.log("Mensaje de Bienvenida a la Tienda de Corazón de Chocolate");
+
+manejarMenu();
