@@ -54,9 +54,9 @@ function solicitarUnidades(tortaNombre) {
 
     do {
 
-        let unidades = parseInt(prompt(`¿Cuántas unidades de ${tortaNombre} te gustaría sumar a tu Carrito? :)\n\n ---> Podés "Cancelar" si todavía no te decidís por agregar esta Torta a tu Carrito...\n\n`));
+        let solicitar = prompt(`¿Cuántas unidades de ${tortaNombre} te gustaría sumar a tu Carrito? :)\n\n ---> Podés "Cancelar" si todavía no te decidís por agregar esta Torta a tu Carrito...\n\n`);
 
-        if (unidades === null) {
+        if (solicitar === null) {
 
             console.log("Se canceló la operación para ingresar cantidad/unidad/es del Objeto seleccionado.\n Volviendo al listado que arrojó la búsqueda...");
             alert("Cancelamos tu operación.");
@@ -65,10 +65,12 @@ function solicitarUnidades(tortaNombre) {
 
         }
 
+        unidades = parseInt(solicitar);
+
         if (isNaN(unidades) || unidades <= 0) {
 
             console.log("Se ingresó una cantidad inválida.");
-            alert("Mmm... :S Por favor, ingresá un número válido mayor que cero.");
+            alert("Mmm... :S Por favor, ingresá un número válido que sea mayor a cero...");
 
         }
 
@@ -77,27 +79,37 @@ function solicitarUnidades(tortaNombre) {
     return unidades;
 }
 
+
 function agregarAlCarrito(torta, unidades) {
+
     let tortaExistente = carrito.find(item => item.Producto === torta.nombre);
 
     if (tortaExistente) {
+
         tortaExistente.Unidades += unidades;
+
     } else {
+
         carrito.push({
+
             Producto: torta.nombre,
             Precio: torta.precio,
             Unidades: unidades,
+
         });
+
     }
 
     totalCompra += unidades * torta.precio;
 
     console.log(carrito);
-    alert(`Sumaste con éxito a tu Carrito tu ${torta.nombre} ! ;)\n\n
+
+    alert(`Sumaste con éxito a tu Carrito tu ${torta.nombre} ! ;) --->>>\n\n
     Llevás ${unidades} unidad/es :)\n\n
     Total Precio Unitario: $ ${torta.precio}\n\n 
     Total Precio a Pagar x ${unidades} unidad/es: ${" "}
     $ ${unidades * torta.precio}\n\n`);
+
 }
 
 
@@ -107,7 +119,7 @@ function aplicarDescuento(total) {
 
     do {
 
-        const codigoDescuento = prompt("¿Tenés Código de Descuento? Ingresalo ;) !\n\n");
+        let codigoDescuento = prompt("¿Tenés Código de Descuento? Ingresalo ;) !\n\n");
 
         console.log("Se solicita Código de Descuento.");
 
@@ -159,7 +171,7 @@ function finalizarCompra() {
 
     do {
 
-        let opcion = parseInt(prompt("¿Y ahora cómo seguimos? :)\n\n ¿Qué te gustaría hacer?\n\n 1->> ¿Querés eliminar alguna Torta de tu Carrito? :(\n\n 2->> Finalizar la Compra ! ;)\n\n"));
+        let opcion = parseInt(prompt("¿Ahora cómo seguimos? :)\n\n ¿Qué te gustaría hacer?\n\n 1->> ¿Querés eliminar alguna Torta de tu Carrito? :(\n\n 2->> Finalizar la Compra ! ;)\n\n"));
 
         switch (opcion) {
 
@@ -174,7 +186,7 @@ function finalizarCompra() {
                 break;
 
             default:
-                alert("Mmm... esa no es una opción válida. Por favor, selecciona 1 o 2 :)...");
+                alert("Mmm... esa no es una opción válida. Por favor, selecciona la Opción 1 o la Opción 2 :)...");
 
                 break;
         }
@@ -182,6 +194,7 @@ function finalizarCompra() {
     } while (continuarCompra);
 
     mostrarDetalleCompra();
+
     totalCompra = aplicarDescuento(totalCompra);
 
     let mensajeFinal = "El Total Final a Pagar por tu Compra es de $ " + totalCompra + "\n\n";
@@ -221,6 +234,7 @@ function eliminarTortaDelCarrito() {
         mensaje += `-> Producto -> ${carrito[i].Producto}\n
         Precio: $ ${carrito[i].Precio}\n
         Unidad/es: ${carrito[i].Unidades}\n\n`;
+
     }
 
     alert(mensaje);
@@ -230,7 +244,7 @@ function eliminarTortaDelCarrito() {
 
     while (true) {
 
-        nombreTortaAEliminar = prompt(`¿Cuál es la Torta que queres eliminar :( ...?\n\n (Si te arrepentiste ---> Presiona Cancelar !)\n\n`);
+        nombreTortaAEliminar = prompt(`¿Cuál es la Torta que queres eliminar?... :(\n\n Si te arrepentiste... ---> Presiona "Cancelar" !\n\n`).trim().toLowerCase();
 
         if (nombreTortaAEliminar === null) {
 
@@ -246,11 +260,12 @@ function eliminarTortaDelCarrito() {
 
             break;
         }
+
     }
 
     if (tortaAEliminar) {
 
-        let unidadesAEliminar = parseInt(prompt(`¿Cuántas unidades de ${tortaAEliminar.Producto} queres eliminar?\n\n (1 - ${tortaAEliminar.Unidades})\n\n`));
+        let unidadesAEliminar = parseInt(prompt(`¿Cuántas unidades de ${tortaAEliminar.Producto} queres eliminar?\n\n (1 --- ${tortaAEliminar.Unidades})\n\n`));
 
         if (unidadesAEliminar >= 1 && unidadesAEliminar <= tortaAEliminar.Unidades) {
 
@@ -281,7 +296,7 @@ function eliminarTortaDelCarrito() {
 
 function manejarTortaSeleccionada(torta) {
 
-    const unidades = solicitarUnidades(torta.nombre);
+    let unidades = solicitarUnidades(torta.nombre);
 
     if (unidades === null) {
 
@@ -313,7 +328,7 @@ function manejarMenu() {
 
     do {
 
-        let opcionMenu = prompt(";) ¿Qué estás queriendo hacer por acá? ------\n\n1---> Buscar mi Torta favorita por su nombre.\n\n2 --->> Ver el Menú de las Tortas Artesanales disponibles.\n\n0 --->>> Salir...\n\n");
+        let opcionMenu = prompt(";) ¿Qué estás queriendo hacer por acá? ------\n\n 1---> Buscar tu Torta favorita por su nombre.\n\n 2 --->> Ver el Menú de mis Tortas Artesanales disponibles.\n\n 0 --->>> Salir...\n\n");
         console.log("Se Ejecuta el Menú Principal...");
 
         if (opcionMenu === null || opcionMenu === "0") {
