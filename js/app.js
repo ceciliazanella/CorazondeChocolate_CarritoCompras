@@ -606,7 +606,8 @@ function finalizarCompra() {
     
     } else {
 
-        window.location.href = "./pages/detalles_compra.html";
+        window.location.href = "./detalles_compra.html";
+
     }
 
 }
