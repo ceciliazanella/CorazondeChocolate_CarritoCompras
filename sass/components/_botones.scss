@@ -1,0 +1,192 @@
+/*--- BOTONES ALERTAS ---*/
+.btn-aceptar {
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+
+    border: none;
+    box-shadow: 2px 2px 4px #000000;
+    border-radius: 0 0.5rem 0 0.8rem;
+
+    cursor: pointer;
+
+    font-family: $principalfont;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+    text-shadow: 1px 1px 1px #000000;
+    text-align: center;
+
+    & i {
+        font-size: 1.2rem;
+    }
+}
+
+.btn-aceptar:active {
+    transform: translateY(1px);
+
+    box-shadow: none;
+
+    text-shadow: none;
+
+    & i {
+        color: $terciarycolor;
+        font-size: 2rem;
+        font-weight: 800;
+        text-shadow: none;
+    }
+}
+
+.btn-cancelar {
+    @extend .btn-aceptar;
+}
+
+.btn-cancelar:active {
+    transform: translateY(1px);
+
+    box-shadow: none;
+
+    text-shadow: none;
+
+    & i {
+        color: $principalcolor;
+        font-size: 2rem;
+        font-weight: 800;
+        text-shadow: none;
+    }
+}
+
+.btn-aceptar {
+    background-color: #00000000;
+    color: $ultraligthcolor;
+}
+
+.btn-cancelar {
+    background-color: $terciarycolor;
+    color: $principalcolor;
+}
+
+/*--- BOTONES FORMULARIOS ---*/
+/*--- BOTÓN INICIAR SESIÓN ---*/
+.btnIniciarSesion {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+
+    background-color: $principalcolor;
+    box-shadow: 1.5px 1.5px 4px #000000;
+    border: solid 2px #bc8034;
+    border-radius: 0.8rem 0 1rem 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 1rem;
+
+    font-family: $principalfont;
+    color: $terciarycolor;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    text-shadow: 1px 1px 1px #000000;
+
+    transition: background-color 0.3s ease;
+
+    & i {
+        font-size: 2rem;
+    }
+
+    &.hovered {
+        background-color: $terciarycolor;
+
+        color: $principalcolor;
+        text-shadow: 0.2px 0.2px 1px #000000;
+        font-size: 1.1rem;
+        font-weight: 800;
+        letter-spacing: 0.3rem;
+    }
+}
+
+.btnIniciarSesion {
+
+    &:active {
+        transform: translateY(1px);
+
+        box-shadow: none;
+
+        text-shadow: none;
+    }
+}
+
+/*--- BOTÓN REGISTRARSE ---*/
+.btnRegistrarse {
+    @extend .btnIniciarSesion;
+}
+
+.btnRegistrarse {
+
+    &:active {
+        transform: translateY(1px);
+
+        box-shadow: none;
+
+        text-shadow: none;
+    }
+}
+
+/*--- FINALIZAR COMPRA ---*/
+.botonFinalizarCompra {
+    margin: 2rem 0;
+
+    @extend .btnIniciarSesion;
+
+}
+
+.botonFinalizarCompra {
+
+    & .hovered {
+        background-color: $terciarycolor;
+
+        color: $principalcolor;
+        text-shadow: 0.2px 0.2px 1px #000000;
+        font-size: 1.1rem;
+        font-weight: 800;
+        letter-spacing: 0.3rem;
+    }
+
+    &:active {
+        transform: translateY(1px);
+
+        box-shadow: none;
+
+        text-shadow: none;
+    }
+}
+
+/*--- CERRAR SESIÓN ---*/
+.botonCerrarSesion {
+    padding: 0.5rem 0.8rem;
+
+    background-color: $principalcolor;
+    border: solid 2px #bc8034;
+    border-radius: 0.5rem 0 1rem 0;
+    box-shadow: 1px 1px 4px #000000;
+
+    color: $terciarycolor;
+    font-family: $principalfont;
+    font-size: 1rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px #000000;
+    letter-spacing: 0.2rem;
+}
+
+.botonCerrarSesion {
+    &:active {
+
+        transform: translateY(1px);
+
+        box-shadow: none;
+
+        text-shadow: none;
+    }
+}

@@ -103,6 +103,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    let botonIniciarSesion = document.querySelector(".btnIniciarSesion");
+
+    botonIniciarSesion.addEventListener("mouseover", function () {
+
+        botonIniciarSesion.classList.add("hovered");
+    });
+
+    botonIniciarSesion.addEventListener("mouseout", function () {
+
+        botonIniciarSesion.classList.remove("hovered");
+
+    });
+
+    let botonRegistrarse = document.querySelector(".btnRegistrarse");
+
+    botonRegistrarse.addEventListener("mouseover", function () {
+
+        botonRegistrarse.classList.add("hovered");
+    });
+
+    botonRegistrarse.addEventListener("mouseout", function () {
+
+        botonRegistrarse.classList.remove("hovered");
+
+    });
+
 
 
     function iniciarSesion(event) {
@@ -186,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function ocultarFormulariosYMostrarFinalizarCompra() {
 
-        const contenedor = document.getElementById('contenedorInicioSesionRegistro');
+        const contenedor = document.getElementById("contenedorInicioSesionRegistro");
         contenedor.innerHTML = '';
 
         let botonFinalizarCompra = document.createElement('button');
@@ -197,17 +223,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
         contenedor.appendChild(botonFinalizarCompra);
 
+        botonFinalizarCompra = document.querySelector(".botonFinalizarCompra");
+
+        botonFinalizarCompra.addEventListener("mouseover", function () {
+    
+            botonFinalizarCompra.classList.add("hovered");
+    
+        });
+    
+        botonFinalizarCompra.addEventListener("mouseout", function () {
+    
+            botonFinalizarCompra.classList.remove("hovered");
+    
+        });
+
     }
 
 
-
+    
     function finalizarCompra() {
 
         mostrarAlerta('<i class="bi bi-emoji-heart-eyes"></i><br> Gracias por confiar y comprar en Corazón de Chocolate !<br> <i class="bi bi-bag-heart-fill"></i><br> Te paso las formas e instrucciones de pago y entrega en el Correo Electrónico que mandamos a tu casilla de mail !<br> <i class="bi bi-envelope-heart"></i>', "exito");
 
         setTimeout(() => {
 
-            window.location.replace ("../index.html");
+            window.location.replace("../index.html");
 
             vaciarCarrito();
 

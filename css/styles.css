@@ -140,7 +140,7 @@ main {
   text-shadow: 1px 1px 1px #5e0b15;
 }
 
-/*--- BOTONES ---*/
+/*--- BOTONES ALERTAS ---*/
 .btn-aceptar, .btn-cancelar {
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -159,6 +159,30 @@ main {
   font-size: 1.2rem;
 }
 
+.btn-aceptar:active, .btn-cancelar:active {
+  transform: translateY(1px);
+  box-shadow: none;
+  text-shadow: none;
+}
+.btn-aceptar:active i, .btn-cancelar:active i {
+  color: #bc8034;
+  font-size: 2rem;
+  font-weight: 800;
+  text-shadow: none;
+}
+
+.btn-cancelar:active {
+  transform: translateY(1px);
+  box-shadow: none;
+  text-shadow: none;
+}
+.btn-cancelar:active i {
+  color: #5e0b15;
+  font-size: 2rem;
+  font-weight: 800;
+  text-shadow: none;
+}
+
 .btn-aceptar, .btn-cancelar {
   background-color: rgba(0, 0, 0, 0);
   color: #d9cab3;
@@ -167,6 +191,92 @@ main {
 .btn-cancelar {
   background-color: #bc8034;
   color: #5e0b15;
+}
+
+/*--- BOTONES FORMULARIOS ---*/
+/*--- BOTÓN INICIAR SESIÓN ---*/
+.btnIniciarSesion, .botonFinalizarCompra, .btnRegistrarse {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background-color: #5e0b15;
+  box-shadow: 1.5px 1.5px 4px #000000;
+  border: solid 2px #bc8034;
+  border-radius: 0.8rem 0 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: "Lato", sans-serif;
+  color: #bc8034;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  text-shadow: 1px 1px 1px #000000;
+  transition: background-color 0.3s ease;
+}
+.btnIniciarSesion i, .botonFinalizarCompra i, .btnRegistrarse i {
+  font-size: 2rem;
+}
+.btnIniciarSesion.hovered, .hovered.botonFinalizarCompra, .hovered.btnRegistrarse {
+  background-color: #bc8034;
+  color: #5e0b15;
+  text-shadow: 0.2px 0.2px 1px #000000;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.3rem;
+}
+
+.btnIniciarSesion:active, .botonFinalizarCompra:active, .btnRegistrarse:active {
+  transform: translateY(1px);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/*--- BOTÓN REGISTRARSE ---*/
+.btnRegistrarse:active {
+  transform: translateY(1px);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/*--- FINALIZAR COMPRA ---*/
+.botonFinalizarCompra {
+  margin: 2rem 0;
+}
+
+.botonFinalizarCompra .hovered {
+  background-color: #bc8034;
+  color: #5e0b15;
+  text-shadow: 0.2px 0.2px 1px #000000;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.3rem;
+}
+.botonFinalizarCompra:active {
+  transform: translateY(1px);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/*--- CERRAR SESIÓN ---*/
+.botonCerrarSesion {
+  padding: 0.5rem 0.8rem;
+  background-color: #5e0b15;
+  border: solid 2px #bc8034;
+  border-radius: 0.5rem 0 1rem 0;
+  box-shadow: 1px 1px 4px #000000;
+  color: #bc8034;
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 1px #000000;
+  letter-spacing: 0.2rem;
+}
+
+.botonCerrarSesion:active {
+  transform: translateY(1px);
+  box-shadow: none;
+  text-shadow: none;
 }
 
 /*--- BUSCADOR ---*/
@@ -312,6 +422,14 @@ main {
   color: #d9cab3;
   text-shadow: 1px 1px 1px #000000;
 }
+.tarjetas_tortas .tarjeta_producto button:active {
+  transform: translateY(1px);
+  box-shadow: none;
+  text-shadow: none;
+}
+.tarjetas_tortas .tarjeta_producto button:active i {
+  text-shadow: none;
+}
 .tarjetas_tortas .tarjeta_producto .foto_producto {
   width: 250px;
   height: 360px;
@@ -412,6 +530,11 @@ main {
   justify-content: center;
   gap: 1rem;
 }
+.contenedor_carrito .header_carrito---titulo .hovered i {
+  color: #d9cab3;
+  text-shadow: none;
+  font-size: 2rem;
+}
 .contenedor_carrito .header_carrito---titulo h2 {
   margin: 0;
   color: #d9cab3;
@@ -497,6 +620,11 @@ main {
   color: #d9cab3;
   text-shadow: 1px 1px 4px #000000;
 }
+.contenedor_carrito button i:active {
+  transform: translateY(1px);
+  color: #8c7a6b;
+  text-shadow: none;
+}
 .contenedor_carrito hr {
   border: solid 2px #d9cab3;
   box-shadow: 1px 1px 4px #bc8034;
@@ -514,6 +642,11 @@ main {
   text-shadow: 1px 1px 2px #5e0b15;
   text-align: center;
   letter-spacing: 0.2rem;
+}
+.contenedor_carrito .btn_finalizar:active {
+  transform: translateY(1px);
+  box-shadow: none;
+  text-shadow: none;
 }
 
 /*--- CÓDIGO DE DESCUENTO ---*/
@@ -595,6 +728,11 @@ main {
   color: #5e0b15;
   font-size: 1.3rem;
   text-shadow: 1px 1px 2px #5e0b15;
+}
+.total_carrito i:active {
+  transform: translateY(1px);
+  color: #bc8034;
+  text-shadow: none;
 }
 
 /*--- DETALLE COMPRA ---*/
@@ -745,51 +883,9 @@ i {
   }
 }
 
-.btnIniciarSesion, .botonFinalizarCompra, .btnRegistrarse {
-  margin-top: 2rem;
-  padding: 1rem 2rem;
-  background-color: #5e0b15;
-  box-shadow: 1px 1px 4px #000000;
-  border: solid 2px #bc8034;
-  border-radius: 0.8rem 0 1rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  font-family: "Lato", sans-serif;
-  color: #bc8034;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.2rem;
-  text-shadow: 1px 1px 1px #000000;
-}
-.btnIniciarSesion i, .botonFinalizarCompra i, .btnRegistrarse i {
-  font-size: 2rem;
-}
-
 /*--- REGISTRARSE ---*/
 .formularioRegistro {
   border-radius: 0 0 0 2rem;
-}
-
-/*--- FINALIZAR COMPRA ---*/
-.botonFinalizarCompra {
-  margin: 2rem 0;
-}
-
-/*--- CERRAR SESIÓN ---*/
-.botonCerrarSesion {
-  padding: 0.5rem 0.8rem;
-  background-color: #5e0b15;
-  border: solid 2px #bc8034;
-  border-radius: 0.5rem 0 1rem 0;
-  box-shadow: 1px 1px 4px #000000;
-  color: #bc8034;
-  font-family: "Lato", sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  text-shadow: 1px 1px 1px #000000;
-  letter-spacing: 0.2rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

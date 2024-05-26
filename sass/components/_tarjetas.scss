@@ -8,7 +8,7 @@
 
     align-items: center;
     justify-content: center;
-    
+
     @include md-760 {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -38,7 +38,7 @@
 
         gap: 2rem;
     }
-    
+
     @include md-1400 {
         width: 1300px;
         padding: 1rem;
@@ -117,6 +117,18 @@
                 font-size: 1.6rem;
                 color: $ultraligthcolor;
                 text-shadow: 1px 1px 1px #000000;
+            }
+        }
+
+        & button:active {
+            transform: translateY(1px);
+
+            box-shadow: none;
+
+            text-shadow: none;
+
+            & i {
+                text-shadow: none;
             }
         }
 

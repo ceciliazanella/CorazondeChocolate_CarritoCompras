@@ -1,5 +1,6 @@
 /*--- FORMULARIOS ---*/
 .formularios {
+
     min-width: 300px;
     padding: 6rem;
 
@@ -10,21 +11,28 @@
     justify-content: center;
 
     & h2 {
+
         font-size: 1.2rem;
         text-shadow: 0.5px 0.5px 0.5px #000000;
+
     }
 
     @include md-760 {
+
         width: 650px;
+
     }
 
     @include md-1000 {
+
         width: 800px;
+
     }
 }
 
 /*--- INICIO SESIÓN ---*/
 .formularioInicioSesion {
+
     padding: 1rem 2rem 3rem 2rem;
 
     background-color: $ligthcolor;
@@ -44,17 +52,22 @@
     text-align: center;
 
     & i {
+
         font-size: 2rem;
+
     }
 
     & h2 {
+
         color: $principalcolor;
         font-size: 1.3rem;
         font-weight: 400;
         text-shadow: 0.51px 0.5px 1px #000000;
+
     }
 
     & input {
+
         width: 260px;
         padding: 0.5rem;
 
@@ -69,73 +82,26 @@
         font-weight: 600;
 
         @include md-760 {
+
             width: 650px;
+
         }
 
         @include md-1000 {
+
             width: 850px;
+
         }
+
     }
-}
 
-.btnIniciarSesion {
-    margin-top: 2rem;
-    padding: 1rem 2rem;
-
-    background-color: $principalcolor;
-    box-shadow: 1px 1px 4px #000000;
-    border: solid 2px #bc8034;
-    border-radius: 0.8rem 0 1rem 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 1rem;
-
-    font-family: $principalfont;
-    color: $terciarycolor;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.2rem;
-    text-shadow: 1px 1px 1px #000000;
-
-    & i {
-        font-size: 2rem;
-    }
 }
 
 /*--- REGISTRARSE ---*/
 .formularioRegistro {
+
     @extend .formularioInicioSesion;
+
     border-radius: 0 0 0 2rem;
-}
-
-.btnRegistrarse {
-    @extend .btnIniciarSesion;
-}
-
-/*--- FINALIZAR COMPRA ---*/
-.botonFinalizarCompra {
-    margin: 2rem 0;
-
-    @extend .btnIniciarSesion;
-}
-
-/*--- CERRAR SESIÓN ---*/
-.botonCerrarSesion {
-    padding: 0.5rem 0.8rem;
-
-    background-color: $principalcolor;
-    border: solid 2px #bc8034;
-    border-radius: 0.5rem 0 1rem 0;
-    box-shadow: 1px 1px 4px #000000;
-
-    color: $terciarycolor;
-    font-family: $principalfont;
-    font-size: 1rem;
-    font-weight: 700;
-    text-shadow: 1px 1px 1px #000000;
-    letter-spacing: 0.2rem;
+    
 }

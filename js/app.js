@@ -43,17 +43,11 @@ function cerrarSesion() {
 
     setTimeout(() => {
 
-        window.location.href = "../index.html";
+        window.location.href = window.location.href;
 
     }, 2000);
+
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    mostrarProductos(tortasArtesanales);
-
-});
-
 
 
 let mensajeAlerta = document.getElementById("mensaje-alerta");
@@ -125,6 +119,12 @@ function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null
 }
 
 
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    mostrarProductos(tortasArtesanales);
+
+});
 
 const tarjetasTortas = document.getElementById("tarjetasTortas");
 
@@ -298,6 +298,20 @@ headerCarrito.appendChild(btnCloseCarrito);
 btnCloseCarrito.addEventListener("click", () => {
 
     contenedorCarrito.style.display = "none";
+
+});
+
+btnCloseCarrito = document.querySelector(".header_carrito---btn");
+
+btnCloseCarrito.addEventListener("mouseover", function () {
+
+    btnCloseCarrito.classList.add("hovered");
+
+});
+
+btnCloseCarrito.addEventListener("mouseout", function () {
+
+    btnCloseCarrito.classList.remove("hovered");
 
 });
 
@@ -598,6 +612,8 @@ btnFinalizarCompra.addEventListener("click", finalizarCompra);
 
 contenedorCarrito.appendChild(btnFinalizarCompra);
 
+
+
 function finalizarCompra() {
 
     if (carrito.length === 0) {
@@ -606,7 +622,7 @@ function finalizarCompra() {
 
     } else {
 
-        window.location.replace ("./pages/detalles_compra.html");
+        window.location.replace("./pages/detalles_compra.html");
 
     }
 
