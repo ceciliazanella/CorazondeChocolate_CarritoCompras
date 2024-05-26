@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
 
-            window.location.href = "../index.html";
+            window.location.replace ("../index.html");
 
             vaciarCarrito();
 

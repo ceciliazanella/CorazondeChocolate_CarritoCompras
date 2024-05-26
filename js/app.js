@@ -22,7 +22,7 @@ function agregarBotonCerrarSesion() {
         botonCerrarSesion.id = "botonCerrarSesion";
         botonCerrarSesion.className = "botonCerrarSesion";
         botonCerrarSesion.textContent = "CERRAR SESIÓN";
-        
+
         botonCerrarSesion.addEventListener("click", cerrarSesion);
 
         header.appendChild(botonCerrarSesion);
@@ -32,20 +32,20 @@ function agregarBotonCerrarSesion() {
 }
 
 function cerrarSesion() {
-    
+
     localStorage.removeItem("usuarioLogueado");
 
     setTimeout(() => {
 
         mostrarAlerta('Tu Chocosesión se cerró exitosamente !<br> <i class="bi bi-emoji-laughing"></i>', "exito");
-    
+
     }, 500);
 
     setTimeout(() => {
 
         window.location.href = "../index.html";
 
-    }, 2000); 
+    }, 2000);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -472,7 +472,7 @@ function actualizarProductosCarrito() {
 
         let precioUnitario = document.createElement("h5");
         precioUnitario.innerHTML = `<i class="bi bi-bag-heart-fill"></i> Precio Unitario: $ ${item.precio}`;
-        
+
         let precioTotal = document.createElement("h5");
         precioTotal.textContent = `Precio Total: $ ${item.unidad * item.precio}`;
         precioDiv.appendChild(precioUnitario);
@@ -526,13 +526,13 @@ function aplicarDescuento() {
         descuento = totalCarritoActual * 0.2;
         mostrarAlerta(`<i class="bi bi-emoji-wink"></i><br> ¡Eso!<br><i class="bi bi-percent"></i><br> ---> ¡Tienes un 20% de Descuento en esta Compra!`, "exito");
         localStorage.setItem("descuento", descuento);
-        
+
         // Hide the discount code input and button after successful application
         codigoDescuentoDiv.style.display = "none";
     } else {
         intentosCodigoDescuento++;
         mostrarAlerta(`<i class="bi bi-exclamation-circle-fill"></i><br> ¡Ouch!<br> ¡Ese Código no está bien...!<br><i class="bi bi-emoji-grimace"></i><br> ¡Inténtalo de nuevo!`, "error");
-        
+
         if (intentosCodigoDescuento >= 3) {
             codigoDescuentoDiv.style.display = "none";
             mostrarAlerta(`<i class="bi bi-ban"></i><br> ¡Será en otra oportunidad!<br><i class="bi bi-emoji-tear"></i><br> ¡Excediste el número de intentos permitidos!`, "error");
@@ -603,10 +603,10 @@ function finalizarCompra() {
     if (carrito.length === 0) {
 
         mostrarAlerta(`<i class="bi bi-exclamation-triangle-fill"></i><br> Mmm... <i class="bi bi-emoji-frown"></i><br> No tenés nada en tu Carrito para comprar...`, "advertencia");
-    
+
     } else {
 
-        window.location.href = "./pages/detalles_compra.html";
+        window.location.replace ("./pages/detalles_compra.html");
 
     }
 
@@ -626,8 +626,8 @@ function vaciarCarrito() {
 
     carrito = [];
 
-    actualizarProductosCarrito(); 
-    actualizarTotalCarrito(); 
-    actualizarLocalStorageCarrito(); 
+    actualizarProductosCarrito();
+    actualizarTotalCarrito();
+    actualizarLocalStorageCarrito();
 
 }
