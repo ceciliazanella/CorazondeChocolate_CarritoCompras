@@ -1,0 +1,89 @@
+/*--- DETALLE COMPRA ---*/
+.detalle_compra {
+    max-width: 350px;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    & .producto {
+        width: 350px;
+        padding: 1rem;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    & .total {
+        @extend .producto;
+        padding: 4rem;
+
+        & p {
+            color: $principalcolor;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+    }
+}
+
+/*--- CUERPO DETALLES COMPRA ---*/
+h1 {
+    margin: 1.8rem 0;
+
+    color: $principalcolor;
+    font-size: 2.3rem;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    line-height: 2rem;
+    text-align: center;
+}
+
+h2 {
+    margin: 1.8rem 0;
+
+    color: $ligthcolor;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    text-align: center;
+}
+
+h3 {
+    margin: 0.8rem 0;
+
+    color: $terciarycolor;
+    font-size: 1.4rem;
+    letter-spacing: 0.1rem;
+    text-shadow: 0.5px 0.5px 1px #5e0b15;
+    font-weight: 600;
+    font-style: italic;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 0;
+
+    font-family: $principalfont;
+    color: $ligthcolor;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 600;
+    text-align: center;
+
+    & .totalAPagar {
+        color: $terciarycolor;
+        font-size: 1.28rem;
+        font-weight: 800;
+        line-height: 1rem;
+    }
+}
+
+i {
+    font-size: 1.5rem;
+}

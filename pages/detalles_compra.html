@@ -6,11 +6,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Meta Description -->
-        <meta name="description"
-            content="Disfrutá llenando de dulce sabor la mesa de tu evento más íntimo y familiar o super recreativo y social con la deliciosa y creativa Pastelería de Corazón de Chocolate! 
-        Elegí tus tortas favoritas acá! Producción totalmente Artesanal; realizada con la mejor materia prima del mercado.">
+        <meta name="description" content="Detalle previo a finalizar tu compra que te ofrece Corazón de Chocolate sobre la Pastelería más creativa y artesanal que estás llevando en tu Carrito de Compras ! 
+        Observalo con atención antes de avanzar !">
         <!-- Favicon -->
-        <link rel="icon" type="image/jpg" href="./favicon/favicon.ico" />
+        <link rel="icon" type="image/jpg" href="../favicon/favicon.ico" />
         <!-- Tipografías -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,37 +23,27 @@
         <!-- Iconos Bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <!-- CSS -->
-        <link rel="stylesheet" href="./css/styles.css">
+        <link rel="stylesheet" href="/css/styles.css">
         <!-- Title INDEX -->
-        <title>Tienda | Corazón de Chocolate, Pastelería Creativa Artesanal</title>
+        <title>Detalle de Compra | Corazón de Chocolate, Pastelería Creativa Artesanal</title>
 
     </head>
 
     <!---------- Body -------->
 
-    <body>
-
+    <body class="container">
         <!-- Header -->
         <header class="container">
 
-            <button id="icon-carrito" class="icon_carrito"><i class="bi bi-cart3"></i></button><span
-                id="contador-carrito" class="contador_carrito"></span>
-
         </header>
-
         <!-- Main -->
         <main class="container">
-            <!-- Mensajes de Alerta -->
+
             <div id="mensaje-alerta"></div>
-            <!-- Buscador de Tortas -->
-            <div class="buscar">
-                <div id="buscador-productos" class="buscador"></div>
-                <input type="text" id="input-buscar" placeholder="Buscar por nombre...">
-            </div>
-            <!-- Contenedor de Tarjetas con Tortas Artesanales -->
-            <section id="tarjetasTortas" class="tarjetas_tortas"></section>
-            <!-- Contenedor del Carrito -->
-            <section id="contenedorCarrito" class="contenedor_carrito"></section>
+            <!-- Detalle Compra -->
+            <div id="detalleCompra" class="detalle_compra"></div>
+            <!-- Formularios -->
+            <div id="contenedorInicioSesionRegistro" class="formularios"></div>
 
         </main>
         <!-- Footer -->
@@ -66,8 +55,8 @@
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
         <!-------- JavaScript -------->
-        <script src="./js/app.js"></script>
-        <script src="./js/detalles_compra.js"></script>
+        <script src="/js/app.js"></script>
+        <script src="/js/detalles_compra.js"></script>
 
     </body>
 

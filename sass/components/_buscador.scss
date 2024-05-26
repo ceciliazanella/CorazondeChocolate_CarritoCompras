@@ -1,0 +1,45 @@
+/*--- BUSCADOR ---*/
+.buscar {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    & h2 {
+        font-family: $principalfont;
+        color: $principalcolor;
+        font-size: 1.6rem;
+        font-style: italic;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    & i {
+        font-size: 2rem;
+        color: $terciarycolor;
+        text-shadow: 1px 1px 1px #5e0b15;
+    }
+
+    & input {
+        width: 260px;
+        height: 40px;
+        padding: 0.6rem;
+
+        border: solid 2px #bc8034;
+        box-shadow: -0.5px 0.5px 6px #000000;
+        border-radius: 0 0.6rem 0 0.6rem;
+        
+        color: $principalcolor;
+        font-style: italic;
+        outline: none;
+    }
+
+    & input:focus {
+        box-shadow: inset 1px 1px 4px #5e0b15;
+    }
+
+    & input:active {
+        box-shadow: inset 1px 1px 4px #5e0b15;
+    }
+}

@@ -1,0 +1,129 @@
+/*--- VARIABLES ---*/
+/*--- COLORES Corazón de Chocolate ---*/
+$principalcolor: #5e0b15;
+$secundarycolor: #90323d;
+$terciarycolor: #bc8034;
+$ligthcolor: #8c7a6b;
+$ultraligthcolor: #d9cab3;
+
+/*--- TIPOGRAFÍAS ---*/
+// FONT FAMILIES //
+$principalfont: "Lato", sans-serif;
+$decorativefont: "Corinthia", cursive;
+
+/*--- ALINEACIONES Y JUSTIFICACIONES ---*/
+// CENTRAR TODO //
+@mixin flex-center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+//--- RESPONSIVE 760px ---//
+@mixin md-760 {
+    @media (min-width: 760px) {
+        @content;
+    }
+}
+
+//--- RESPONSIVE 1000px ---//
+@mixin md-1000 {
+    @media (min-width: 1000px) {
+        @content;
+    }
+}
+
+//--- RESPONSIVE 1200px ---//
+@mixin md-1200 {
+    @media (min-width: 1200px) {
+        @content;
+    }
+}
+
+//--- RESPONSIVE 1400px ---//
+@mixin md-1400 {
+    @media (min-width: 1400px) {
+        @content;
+    }
+}
+
+// --- --- --- //
+
+/*--- RESET ---*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: $principalfont;
+}
+
+a {
+    text-decoration: none;
+    text-transform: bold;
+    color: $ultraligthcolor;
+}
+
+ol {
+    list-style: none;
+
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    @extend ol;
+}
+
+img {
+    max-width: 100%;
+}
+
+hr {
+    width: 95%;
+    margin: 3rem auto;
+
+    border: solid 1.5px $principalcolor;
+    border-radius: 0.3rem;
+
+    z-index: 2;
+}
+
+/*--- BODY ---*/
+body {
+    min-width: 350px;
+    max-width: 1980px;
+    margin: 0 auto;
+    padding: 4rem;
+
+    @include flex-center;
+}
+
+header {
+    @extend body;
+
+    margin: 4rem;
+}
+
+main {
+    @extend body;
+
+    margin: 4rem;
+
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.botonCerrarSesion {
+    width: 200px;
+
+    position: absolute;
+    top: 80px;
+
+    @include md-1000 {
+        position: absolute;
+        top: 80px;
+        right: 235px;
+    }
+}
