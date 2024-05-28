@@ -1,4 +1,15 @@
+const tarjetasTortas = document.getElementById("tarjetasTortas");
+const mensajeAlerta = document.getElementById("mensaje-alerta");
+const inputBuscar = document.getElementById("input-buscar");
+const buscadorProductos = document.getElementById("buscador-productos");
+const iconCarrito = document.getElementById("icon-carrito");
+const contenedorCarrito = document.getElementById("contenedorCarrito");
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
+
+    mostrarProductos(tortasArtesanales);
 
     let usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado")) || null;
 
@@ -25,6 +36,18 @@ function agregarBotonCerrarSesion() {
 
         botonCerrarSesion.addEventListener("click", cerrarSesion);
 
+        botonCerrarSesion.addEventListener("mouseover", () => {
+
+            botonCerrarSesion.classList.add("hovered");
+
+        });
+
+        botonCerrarSesion.addEventListener("mouseout", () => {
+
+            botonCerrarSesion.classList.remove("hovered");
+
+        });
+
         header.appendChild(botonCerrarSesion);
 
     }
@@ -50,7 +73,6 @@ function cerrarSesion() {
 }
 
 
-let mensajeAlerta = document.getElementById("mensaje-alerta");
 
 function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null, callbackCancelar = null) {
 
@@ -60,6 +82,7 @@ function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null
 
     let mensajeTexto = document.createElement("p");
     mensajeTexto.innerHTML = mensaje;
+
     alerta.appendChild(mensajeTexto);
 
     if (conBotones) {
@@ -79,6 +102,18 @@ function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null
 
         });
 
+        botonAceptar.addEventListener("mouseover", () => {
+
+            botonAceptar.classList.add("hovered");
+
+        });
+
+        botonAceptar.addEventListener("mouseout", () => {
+
+            botonAceptar.classList.remove("hovered");
+
+        });
+
         let botonCancelar = document.createElement("button");
         botonCancelar.innerHTML = '<i class="bi bi-x-square"></i>';
         botonCancelar.className = "btn-cancelar";
@@ -91,6 +126,17 @@ function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null
 
         });
 
+        botonCancelar.addEventListener("mouseover", () => {
+
+            botonCancelar.classList.add("hovered");
+
+        });
+
+        botonCancelar.addEventListener("mouseout", () => {
+
+            botonCancelar.classList.remove("hovered");
+        });
+
         botonesDiv.appendChild(botonAceptar);
         botonesDiv.appendChild(botonCancelar);
         alerta.appendChild(botonesDiv);
@@ -98,6 +144,7 @@ function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null
     }
 
     let mensajeAlerta = document.getElementById("mensaje-alerta");
+
     mensajeAlerta.appendChild(alerta);
 
     if (!conBotones) {
@@ -120,101 +167,9 @@ function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    mostrarProductos(tortasArtesanales);
-
-});
-
-const tarjetasTortas = document.getElementById("tarjetasTortas");
-
-function Torta(id, nombre, img, precio, unidad) {
-
-    this.id = id;
-    this.nombre = nombre;
-    this.img = img;
-    this.precio = precio;
-    this.unidad = unidad;
-
-};
-
-const lemmonPie = new Torta(1, "Torta Lemmon Pie", "./images_menu_tortas_artesanales/1_lemmon_pie.webp", 16500, 1);
-const cheeseCakeFrutosRojos = new Torta(2, "Cheese Cake Frutos Rojos", "./images_menu_tortas_artesanales/2_cheesecake_frutosrojos.webp", 26000, 1);
-const crumbleManzana = new Torta(3, "Crumble de Manzana", "./images_menu_tortas_artesanales/3_crumble_manzana.webp", 16500, 1);
-const chocotorta = new Torta(4, "Chocotorta", "./images_menu_tortas_artesanales/4_chocotorta.webp", 25000, 1);
-const tartaFrutal = new Torta(5, "Tarta Frutal", "./images_menu_tortas_artesanales/5_tarta_frutal.webp", 16500, 1);
-const postreBalcarse = new Torta(6, "Postre Balcarse", "./images_menu_tortas_artesanales/6_postre_balcarse.webp", 25000, 1);
-const brownieClásica = new Torta(7, "Torta Brownie Clásica", "./images_menu_tortas_artesanales/7_torta_brownie.webp", 20000, 1);
-const selvaNegra = new Torta(8, "Torta Selva Negra", "./images_menu_tortas_artesanales/8_selva_negra.webp", 30000, 1);
-const dobleOreo = new Torta(9, "Torta Doble Oreo", "./images_menu_tortas_artesanales/9_torta_doble_oreo.webp", 26000, 1);
-const explosionOreo = new Torta(10, "Torta Explosión Oreo", "./images_menu_tortas_artesanales/10_torta_explosion_oreo.webp", 26000, 1);
-
-const tortasArtesanales = [lemmonPie, cheeseCakeFrutosRojos, crumbleManzana, chocotorta, tartaFrutal, postreBalcarse, brownieClásica, selvaNegra, dobleOreo, explosionOreo];
-
-function generarTarjetaProducto(torta) {
-
-    const tarjeta = document.createElement("div");
-    tarjeta.classList.add("tarjeta_producto");
-
-    const nombre = document.createElement("h2");
-    nombre.textContent = torta.nombre;
-    tarjeta.appendChild(nombre);
-
-    const fotoProducto = document.createElement("div");
-    fotoProducto.classList.add("foto_producto");
-
-    const imagen = document.createElement("img");
-    imagen.src = torta.img;
-    imagen.alt = torta.nombre;
-    fotoProducto.appendChild(imagen);
-    tarjeta.appendChild(fotoProducto);
-
-    let precio = document.createElement("h3");
-    precio.innerHTML = `<i class="bi bi-bag-heart"></i> Precio: $ ${torta.precio}`;
-    tarjeta.appendChild(precio);
-
-    let cantidadInput = document.createElement("input");
-    cantidadInput.type = "number";
-    cantidadInput.value = 1;
-    cantidadInput.min = 1;
-    cantidadInput.classList.add("cantidad_input");
-    tarjeta.appendChild(cantidadInput);
-
-    let agregarBtn = document.createElement("button");
-    agregarBtn.innerHTML = 'Agregar al <i class="bi bi-cart-plus"></i>';
-
-    agregarBtn.addEventListener("click", () => agregarAlCarrito(torta.id, parseInt(cantidadInput.value)));
-
-    tarjeta.appendChild(agregarBtn);
-
-    return tarjeta;
-
-}
-
-
-
-function mostrarProductos(tortas) {
-
-    const contenedor = document.getElementById("tarjetasTortas");
-    contenedor.innerHTML = '';
-
-    tortas.forEach(torta => {
-
-        let tarjeta = generarTarjetaProducto(torta);
-        contenedor.appendChild(tarjeta);
-
-    });
-
-}
-
-mostrarProductos(tortasArtesanales);
-
-
-
-const buscadorProductos = document.getElementById("buscador-productos");
-
 const buscador = document.createElement("h2");
 buscador.innerHTML = `<h2>Encontrá</br>tu torta favorita !</h2><i class="bi bi-search-heart"></i>`;
+
 buscadorProductos.appendChild(buscador);
 
 function filtrarTortasPorNombre(nombre) {
@@ -226,10 +181,6 @@ function filtrarTortasPorNombre(nombre) {
     mostrarProductos(tortasFiltradas);
 
 }
-
-
-
-const inputBuscar = document.getElementById("input-buscar");
 
 inputBuscar.addEventListener("input", (event) => {
 
@@ -271,28 +222,34 @@ window.addEventListener("load", () => {
 
 });
 
-
-
-const iconCarrito = document.getElementById("icon-carrito");
-
 iconCarrito.addEventListener("click", () => {
 
     contenedorCarrito.style.display = "flex";
 
 });
 
+iconCarrito.addEventListener("mouseover", () => {
 
+    iconCarrito.classList.add("ampliar");
 
-const contenedorCarrito = document.getElementById("contenedorCarrito");
+});
+
+iconCarrito.addEventListener("mouseout", () => {
+
+    iconCarrito.classList.remove("ampliar");
+
+});
 
 const headerCarrito = document.createElement("div");
 headerCarrito.className = "header_carrito---titulo";
 headerCarrito.innerHTML = `<i class="bi bi-cart-fill"></i><h2>CARRITO</h2>`;
+
 contenedorCarrito.appendChild(headerCarrito);
 
 let btnCloseCarrito = document.createElement("button");
 btnCloseCarrito.className = "header_carrito---btn";
 btnCloseCarrito.innerHTML = `<i class="bi bi-x-circle"></i>`;
+
 headerCarrito.appendChild(btnCloseCarrito);
 
 btnCloseCarrito.addEventListener("click", () => {
@@ -315,10 +272,9 @@ btnCloseCarrito.addEventListener("mouseout", function () {
 
 });
 
-
-
 let productosCarrito = document.createElement("div");
 productosCarrito.id = "productos-carrito";
+
 contenedorCarrito.appendChild(productosCarrito);
 
 
@@ -448,6 +404,7 @@ function actualizarProductosCarrito() {
 
         let nombreProducto = document.createElement("h3");
         nombreProducto.textContent = item.nombre;
+
         itemDiv.appendChild(nombreProducto);
 
         let imagenProductoDiv = document.createElement("div");
@@ -456,6 +413,7 @@ function actualizarProductosCarrito() {
         let imagenProducto = document.createElement("img");
         imagenProducto.src = item.img;
         imagenProducto.alt = item.nombre;
+
         imagenProductoDiv.appendChild(imagenProducto);
         itemDiv.appendChild(imagenProductoDiv);
 
@@ -471,6 +429,7 @@ function actualizarProductosCarrito() {
 
         let cantidadUnidades = document.createElement("h4");
         cantidadUnidades.textContent = `Unidad/es: ${item.unidad}`;
+
         unidadDiv.appendChild(cantidadUnidades);
 
         let sumarBtn = document.createElement("button");
@@ -516,44 +475,72 @@ codigoDescuentoDiv.innerHTML = `
     <div>
         <h2>Código de Descuento</h2>
     </div>`;
+
 contenedorCarrito.appendChild(codigoDescuentoDiv);
 
 let codigoDescuentoInput = document.createElement("input");
 codigoDescuentoInput.setAttribute("placeholder", "Código de Descuento");
+
 codigoDescuentoDiv.appendChild(codigoDescuentoInput);
 
 let codigoDescuentoButton = document.createElement("button");
 codigoDescuentoButton.className = "codigoDescuentoBtn";
 codigoDescuentoButton.textContent = "Aplicar Descuento";
+
 codigoDescuentoDiv.appendChild(codigoDescuentoButton);
+
+codigoDescuentoButton.addEventListener("mouseover", () => {
+
+    codigoDescuentoButton.classList.add("remarcar");
+
+});
+
+codigoDescuentoButton.addEventListener("mouseout", () => {
+
+    codigoDescuentoButton.classList.remove("remarcar");
+
+});
 
 let codigoDescuento = '';
 
 let intentosCodigoDescuento = 0;
 
 function aplicarDescuento() {
+
     let totalCarritoActual = calcularTotalCarrito();
+
     let codigoIngresado = codigoDescuentoInput.value;
+
     let descuento = 0;
 
     if (codigoIngresado === "cielodejupiter") {
+
         descuento = totalCarritoActual * 0.2;
+
         mostrarAlerta(`<i class="bi bi-emoji-wink"></i><br> ¡Eso!<br><i class="bi bi-percent"></i><br> ---> ¡Tienes un 20% de Descuento en esta Compra!`, "exito");
+
         localStorage.setItem("descuento", descuento);
 
-        // Hide the discount code input and button after successful application
         codigoDescuentoDiv.style.display = "none";
+
     } else {
+
         intentosCodigoDescuento++;
+
         mostrarAlerta(`<i class="bi bi-exclamation-circle-fill"></i><br> ¡Ouch!<br> ¡Ese Código no está bien...!<br><i class="bi bi-emoji-grimace"></i><br> ¡Inténtalo de nuevo!`, "error");
 
         if (intentosCodigoDescuento >= 3) {
+
             codigoDescuentoDiv.style.display = "none";
+
             mostrarAlerta(`<i class="bi bi-ban"></i><br> ¡Será en otra oportunidad!<br><i class="bi bi-emoji-tear"></i><br> ¡Excediste el número de intentos permitidos!`, "error");
+
         }
+
     }
 
     actualizarTotalCarrito();
+
 }
 
 codigoDescuentoButton.addEventListener("click", () => {
@@ -566,6 +553,7 @@ codigoDescuentoButton.addEventListener("click", () => {
 
 let totalCarritoDiv = document.createElement("div");
 totalCarritoDiv.id = "total-carrito";
+
 contenedorCarrito.appendChild(totalCarritoDiv);
 
 function calcularTotalCarrito() {
@@ -610,9 +598,19 @@ btnFinalizarCompra.textContent = "COMPRAR";
 
 btnFinalizarCompra.addEventListener("click", finalizarCompra);
 
+btnFinalizarCompra.addEventListener("mouseover", () => {
+
+    btnFinalizarCompra.classList.add("comprar");
+
+});
+
+btnFinalizarCompra.addEventListener("mouseout", () => {
+
+    btnFinalizarCompra.classList.remove("comprar");
+
+});
+
 contenedorCarrito.appendChild(btnFinalizarCompra);
-
-
 
 function finalizarCompra() {
 
@@ -635,6 +633,18 @@ btnVaciarCarrito.className = "vaciarCarritoBtn";
 btnVaciarCarrito.innerHTML = `<i class="bi bi-cart-dash"></i><br>Vaciar Carrito`;
 
 btnVaciarCarrito.addEventListener("click", vaciarCarrito);
+
+btnVaciarCarrito.addEventListener("mouseover", () => {
+
+    btnVaciarCarrito.classList.add("remarcar");
+
+});
+
+btnVaciarCarrito.addEventListener("mouseout", () => {
+
+    btnVaciarCarrito.classList.remove("remarcar");
+
+});
 
 contenedorCarrito.appendChild(btnVaciarCarrito);
 

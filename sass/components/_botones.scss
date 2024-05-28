@@ -3,12 +3,14 @@
     padding: 0.5rem 1rem;
     margin: 0.5rem;
 
+    background-color: #00000000;
     border: none;
     box-shadow: 2px 2px 4px #000000;
     border-radius: 0 0.5rem 0 0.8rem;
 
     cursor: pointer;
 
+    color: $ultraligthcolor;
     font-family: $principalfont;
     font-size: 0.8rem;
     font-weight: 700;
@@ -16,53 +18,51 @@
     text-shadow: 1px 1px 1px #000000;
     text-align: center;
 
+    transition: all 0.8s ease-in-out;
+
     & i {
         font-size: 1.2rem;
+
+        transition: all 0.4s ease-in-out;
     }
-}
 
-.btn-aceptar:active {
-    transform: translateY(1px);
+    &:active {
+        transform: translateY(1px);
 
-    box-shadow: none;
+        box-shadow: none;
 
-    text-shadow: none;
-
-    & i {
-        color: $terciarycolor;
-        font-size: 2rem;
-        font-weight: 800;
         text-shadow: none;
+
+        & i {
+            color: $terciarycolor;
+            font-size: 2rem;
+            font-weight: 800;
+            text-shadow: none;
+        }
     }
 }
 
 .btn-cancelar {
     @extend .btn-aceptar;
-}
 
-.btn-cancelar:active {
-    transform: translateY(1px);
-
-    box-shadow: none;
-
-    text-shadow: none;
-
-    & i {
-        color: $principalcolor;
-        font-size: 2rem;
-        font-weight: 800;
-        text-shadow: none;
-    }
-}
-
-.btn-aceptar {
-    background-color: #00000000;
-    color: $ultraligthcolor;
-}
-
-.btn-cancelar {
     background-color: $terciarycolor;
+
     color: $principalcolor;
+
+    &:active {
+        transform: translateY(1px);
+
+        box-shadow: none;
+
+        text-shadow: none;
+
+        & i {
+            color: $principalcolor;
+            font-size: 2rem;
+            font-weight: 800;
+            text-shadow: none;
+        }
+    }
 }
 
 /*--- BOTONES FORMULARIOS ---*/
@@ -90,47 +90,44 @@
     letter-spacing: 0.2rem;
     text-shadow: 1px 1px 1px #000000;
 
-    transition: background-color 0.3s ease;
+    transition: all 0.8s ease-in-out;
 
     & i {
         font-size: 2rem;
     }
 
+    &:active {
+        transform: translateY(1px);
+
+        box-shadow: inset 1px 1px 4px #000000;
+        border: none;
+
+        text-shadow: -0.5px -0.5px 1px #000000;
+    }
+
     &.hovered {
         background-color: $terciarycolor;
+        box-shadow: 1px 1px 4px #000000;
 
         color: $principalcolor;
-        text-shadow: 0.2px 0.2px 1px #000000;
+        text-shadow: none;
         font-size: 1.1rem;
         font-weight: 800;
         letter-spacing: 0.3rem;
     }
 }
 
-.btnIniciarSesion {
-
-    &:active {
-        transform: translateY(1px);
-
-        box-shadow: none;
-
-        text-shadow: none;
-    }
-}
-
 /*--- BOTÓN REGISTRARSE ---*/
 .btnRegistrarse {
     @extend .btnIniciarSesion;
-}
-
-.btnRegistrarse {
 
     &:active {
         transform: translateY(1px);
 
-        box-shadow: none;
+        box-shadow: inset 1px 1px 4px #000000;
+        border: none;
 
-        text-shadow: none;
+        text-shadow: -0.5px -0.5px 1px #000000;
     }
 }
 
@@ -140,20 +137,6 @@
 
     @extend .btnIniciarSesion;
 
-}
-
-.botonFinalizarCompra {
-
-    & .hovered {
-        background-color: $terciarycolor;
-
-        color: $principalcolor;
-        text-shadow: 0.2px 0.2px 1px #000000;
-        font-size: 1.1rem;
-        font-weight: 800;
-        letter-spacing: 0.3rem;
-    }
-
     &:active {
         transform: translateY(1px);
 
@@ -161,6 +144,20 @@
 
         text-shadow: none;
     }
+
+    & .hovered {
+        background-color: $terciarycolor;
+        box-shadow: none;
+
+        color: $principalcolor;
+        text-shadow: 0.2px 0.2px 1px #000000;
+        font-size: 1.2rem;
+        font-weight: 800;
+        letter-spacing: 0.3rem;
+
+        transition: all 0.2s ease-in-out;
+    }
+
 }
 
 /*--- CERRAR SESIÓN ---*/
@@ -178,9 +175,9 @@
     font-weight: 700;
     text-shadow: 1px 1px 1px #000000;
     letter-spacing: 0.2rem;
-}
 
-.botonCerrarSesion {
+    transition: background-color 0.8s ease-in-out;
+
     &:active {
 
         transform: translateY(1px);
@@ -189,4 +186,35 @@
 
         text-shadow: none;
     }
+
+    & .hovered {
+        background-color: $ultraligthcolor;
+        border: solid 4px #bc8034;
+
+        color: $secundarycolor;
+        font-size: 1.1rem;
+        font-weight: 800;
+        font-style: italic;
+    }
 }
+
+.hovered {
+    background-color: $ultraligthcolor;
+    box-shadow: none;
+    border: solid 4px #bc8034;
+
+    color: $secundarycolor;
+    font-size: 1.1rem;
+    font-weight: 800;
+    font-style: italic;
+
+    transition: all 0.4s ease-in-out;
+
+    & i {
+        color: $principalcolor;
+        font-size: 2rem;
+
+        transition: all 0.4s ease-in-out;
+    }
+}
+

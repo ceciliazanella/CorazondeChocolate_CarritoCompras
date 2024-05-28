@@ -11,6 +11,34 @@
 
     font-size: 2rem;
     color: $terciarycolor;
+    text-shadow: 1px 1px 2px #000000;
+
+    transition: all 0.8s ease-in-out;
+
+    &:active {
+
+        transform: translateY(1px);
+
+        box-shadow: none;
+
+        text-shadow: none;
+    }
+}
+
+.ampliar {
+    padding: 1.5rem;
+
+    background-color: $terciarycolor;
+    box-shadow: inset 1px 1px 1px #5e0b15;
+    border: solid 4px #5e0b15;
+
+    & i {
+        color: $principalcolor;
+        font-size: 2.8rem;
+        text-shadow: -1.2px -1.2px 4px #5e0b15;
+    }
+
+    transition: all 0.4s ease-in-out;
 }
 
 /*--- CONTENEDOR CARRITO ---*/
@@ -55,8 +83,26 @@
         font-style: italic;
         letter-spacing: 0.1rem;
 
+        transition: all 1s ease-in-out;
+
         & i {
             font-size: 2rem;
+        }
+    }
+
+    & .remarcar {
+        color: $terciarycolor;
+        font-size: 1.3rem;
+        font-weight: 700;
+        font-style: normal;
+
+        transition: all 1s ease-in-out;
+
+        & i {
+            font-size: 2.2rem;
+            color: $terciarycolor;
+
+            transition: all 1s ease-in-out;
         }
     }
 
@@ -111,6 +157,8 @@
                 color: $ultraligthcolor;
                 text-shadow: none;
                 font-size: 2rem;
+
+                transition: all 1s ease-out;
             }
         }
 
@@ -147,6 +195,8 @@
             color: $terciarycolor;
             text-shadow: 1px 1px 4px #bc8034;
             font-size: 1.5rem;
+
+            transition: all 2s ease-in-out;
         }
     }
 
@@ -235,6 +285,13 @@
             color: $ligthcolor;
             text-shadow: none;
         }
+
+        & i:hover {
+            color: $terciarycolor;
+            text-shadow: 1.5px -1.5px 2.5px #000000;
+
+            transition: all 1s ease-in-out;
+        }
     }
 
     & hr {
@@ -257,9 +314,8 @@
         text-shadow: 1px 1px 2px #5e0b15;
         text-align: center;
         letter-spacing: 0.2rem;
-    }
 
-    & .btn_finalizar {
+        transition: all 0.5s ease-in-out;
 
         &:active {
             transform: translateY(1px);
@@ -268,6 +324,19 @@
 
             text-shadow: none;
         }
+    }
+
+    & .comprar {
+        padding: 1rem 4rem;
+
+        background-color: $terciarycolor;
+        box-shadow: inset -1 -1px 2px #000000;
+        border: none;
+
+        color: $ultraligthcolor;
+        font-size: 1.3rem;
+
+        transition: all 1s ease-in-out;
     }
 }
 
@@ -282,11 +351,21 @@
     align-items: center;
     justify-content: center;
 
+    transition: all 0.5s ease-in;
+
     & .codigoDescuentoBtn {
         font-size: 1.2rem;
         text-transform: uppercase;
         font-weight: 700;
         letter-spacing: 0.2rem;
+    }
+
+    & .remarcar {
+        color: $ultraligthcolor;
+        font-size: 1.4rem;
+        font-weight: 800;
+
+        transition: all 1s ease-in-out;
     }
 
     & input {

@@ -144,21 +144,24 @@ main {
 .btn-aceptar, .btn-cancelar {
   padding: 0.5rem 1rem;
   margin: 0.5rem;
+  background-color: rgba(0, 0, 0, 0);
   border: none;
   box-shadow: 2px 2px 4px #000000;
   border-radius: 0 0.5rem 0 0.8rem;
   cursor: pointer;
+  color: #d9cab3;
   font-family: "Lato", sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.2rem;
   text-shadow: 1px 1px 1px #000000;
   text-align: center;
+  transition: all 0.8s ease-in-out;
 }
 .btn-aceptar i, .btn-cancelar i {
   font-size: 1.2rem;
+  transition: all 0.4s ease-in-out;
 }
-
 .btn-aceptar:active, .btn-cancelar:active {
   transform: translateY(1px);
   box-shadow: none;
@@ -171,6 +174,10 @@ main {
   text-shadow: none;
 }
 
+.btn-cancelar {
+  background-color: #bc8034;
+  color: #5e0b15;
+}
 .btn-cancelar:active {
   transform: translateY(1px);
   box-shadow: none;
@@ -181,16 +188,6 @@ main {
   font-size: 2rem;
   font-weight: 800;
   text-shadow: none;
-}
-
-.btn-aceptar, .btn-cancelar {
-  background-color: rgba(0, 0, 0, 0);
-  color: #d9cab3;
-}
-
-.btn-cancelar {
-  background-color: #bc8034;
-  color: #5e0b15;
 }
 
 /*--- BOTONES FORMULARIOS ---*/
@@ -212,50 +209,53 @@ main {
   font-weight: 600;
   letter-spacing: 0.2rem;
   text-shadow: 1px 1px 1px #000000;
-  transition: background-color 0.3s ease;
+  transition: all 0.8s ease-in-out;
 }
 .btnIniciarSesion i, .botonFinalizarCompra i, .btnRegistrarse i {
   font-size: 2rem;
 }
+.btnIniciarSesion:active, .botonFinalizarCompra:active, .btnRegistrarse:active {
+  transform: translateY(1px);
+  box-shadow: inset 1px 1px 4px #000000;
+  border: none;
+  text-shadow: -0.5px -0.5px 1px #000000;
+}
 .btnIniciarSesion.hovered, .hovered.botonFinalizarCompra, .hovered.btnRegistrarse {
   background-color: #bc8034;
+  box-shadow: 1px 1px 4px #000000;
   color: #5e0b15;
-  text-shadow: 0.2px 0.2px 1px #000000;
+  text-shadow: none;
   font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 0.3rem;
 }
 
-.btnIniciarSesion:active, .botonFinalizarCompra:active, .btnRegistrarse:active {
-  transform: translateY(1px);
-  box-shadow: none;
-  text-shadow: none;
-}
-
 /*--- BOTÓN REGISTRARSE ---*/
 .btnRegistrarse:active {
   transform: translateY(1px);
-  box-shadow: none;
-  text-shadow: none;
+  box-shadow: inset 1px 1px 4px #000000;
+  border: none;
+  text-shadow: -0.5px -0.5px 1px #000000;
 }
 
 /*--- FINALIZAR COMPRA ---*/
 .botonFinalizarCompra {
   margin: 2rem 0;
 }
-
-.botonFinalizarCompra .hovered {
-  background-color: #bc8034;
-  color: #5e0b15;
-  text-shadow: 0.2px 0.2px 1px #000000;
-  font-size: 1.1rem;
-  font-weight: 800;
-  letter-spacing: 0.3rem;
-}
 .botonFinalizarCompra:active {
   transform: translateY(1px);
   box-shadow: none;
   text-shadow: none;
+}
+.botonFinalizarCompra .hovered {
+  background-color: #bc8034;
+  box-shadow: none;
+  color: #5e0b15;
+  text-shadow: 0.2px 0.2px 1px #000000;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.3rem;
+  transition: all 0.2s ease-in-out;
 }
 
 /*--- CERRAR SESIÓN ---*/
@@ -271,12 +271,36 @@ main {
   font-weight: 700;
   text-shadow: 1px 1px 1px #000000;
   letter-spacing: 0.2rem;
+  transition: background-color 0.8s ease-in-out;
 }
-
 .botonCerrarSesion:active {
   transform: translateY(1px);
   box-shadow: none;
   text-shadow: none;
+}
+.botonCerrarSesion .hovered {
+  background-color: #d9cab3;
+  border: solid 4px #bc8034;
+  color: #90323d;
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.hovered {
+  background-color: #d9cab3;
+  box-shadow: none;
+  border: solid 4px #bc8034;
+  color: #90323d;
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-style: italic;
+  transition: all 0.4s ease-in-out;
+}
+.hovered i {
+  color: #5e0b15;
+  font-size: 2rem;
+  transition: all 0.4s ease-in-out;
 }
 
 /*--- BUSCADOR ---*/
@@ -414,6 +438,7 @@ main {
   font-size: 1rem;
   color: #bc8034;
   text-shadow: 1px 1px 1px #000000;
+  transition: background-color 0.8s ease-in-out;
 }
 .tarjetas_tortas .tarjeta_producto button i {
   margin-right: 0rem;
@@ -429,6 +454,22 @@ main {
 }
 .tarjetas_tortas .tarjeta_producto button:active i {
   text-shadow: none;
+}
+.tarjetas_tortas .tarjeta_producto .hovered {
+  background-color: #bc8034;
+  border: solid 3px #5e0b15;
+  box-shadow: inset 0.5px 0.5px 1px #000000;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #5e0b15;
+  text-shadow: -0.5px -0.5px 0.3px #000000;
+  transition: all 0.2s ease-in-out;
+}
+.tarjetas_tortas .tarjeta_producto .hovered i {
+  color: #90323d;
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 2px #000000;
 }
 .tarjetas_tortas .tarjeta_producto .foto_producto {
   width: 250px;
@@ -454,6 +495,26 @@ main {
   align-self: start;
   font-size: 2rem;
   color: #bc8034;
+  text-shadow: 1px 1px 2px #000000;
+  transition: all 0.8s ease-in-out;
+}
+.icon_carrito:active {
+  transform: translateY(1px);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.ampliar {
+  padding: 1.5rem;
+  background-color: #bc8034;
+  box-shadow: inset 1px 1px 1px #5e0b15;
+  border: solid 4px #5e0b15;
+  transition: all 0.4s ease-in-out;
+}
+.ampliar i {
+  color: #5e0b15;
+  font-size: 2.8rem;
+  text-shadow: -1.2px -1.2px 4px #5e0b15;
 }
 
 /*--- CONTENEDOR CARRITO ---*/
@@ -491,9 +552,22 @@ main {
   font-weight: 400;
   font-style: italic;
   letter-spacing: 0.1rem;
+  transition: all 1s ease-in-out;
 }
 .contenedor_carrito .vaciarCarritoBtn i {
   font-size: 2rem;
+}
+.contenedor_carrito .remarcar {
+  color: #bc8034;
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-style: normal;
+  transition: all 1s ease-in-out;
+}
+.contenedor_carrito .remarcar i {
+  font-size: 2.2rem;
+  color: #bc8034;
+  transition: all 1s ease-in-out;
 }
 .contenedor_carrito .item_carrito {
   display: flex;
@@ -534,6 +608,7 @@ main {
   color: #d9cab3;
   text-shadow: none;
   font-size: 2rem;
+  transition: all 1s ease-out;
 }
 .contenedor_carrito .header_carrito---titulo h2 {
   margin: 0;
@@ -561,6 +636,7 @@ main {
   color: #bc8034;
   text-shadow: 1px 1px 4px #bc8034;
   font-size: 1.5rem;
+  transition: all 2s ease-in-out;
 }
 .contenedor_carrito .unidad {
   display: flex;
@@ -625,6 +701,11 @@ main {
   color: #8c7a6b;
   text-shadow: none;
 }
+.contenedor_carrito button i:hover {
+  color: #bc8034;
+  text-shadow: 1.5px -1.5px 2.5px #000000;
+  transition: all 1s ease-in-out;
+}
 .contenedor_carrito hr {
   border: solid 2px #d9cab3;
   box-shadow: 1px 1px 4px #bc8034;
@@ -642,11 +723,21 @@ main {
   text-shadow: 1px 1px 2px #5e0b15;
   text-align: center;
   letter-spacing: 0.2rem;
+  transition: all 0.5s ease-in-out;
 }
 .contenedor_carrito .btn_finalizar:active {
   transform: translateY(1px);
   box-shadow: none;
   text-shadow: none;
+}
+.contenedor_carrito .comprar {
+  padding: 1rem 4rem;
+  background-color: #bc8034;
+  box-shadow: inset -1 -1px 2px #000000;
+  border: none;
+  color: #d9cab3;
+  font-size: 1.3rem;
+  transition: all 1s ease-in-out;
 }
 
 /*--- CÓDIGO DE DESCUENTO ---*/
@@ -657,12 +748,19 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: all 0.5s ease-in;
 }
 .codigo_descuento .codigoDescuentoBtn {
   font-size: 1.2rem;
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 0.2rem;
+}
+.codigo_descuento .remarcar {
+  color: #d9cab3;
+  font-size: 1.4rem;
+  font-weight: 800;
+  transition: all 1s ease-in-out;
 }
 .codigo_descuento input {
   width: 300px;

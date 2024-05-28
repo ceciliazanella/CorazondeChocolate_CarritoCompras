@@ -101,8 +101,8 @@
         }
 
         & button {
-            background-color: #5e0b15;
-            border: solid 2px #bc8034;
+            background-color: $principalcolor;
+            border: solid 2px $terciarycolor;
             border-radius: 1.6rem 0.2rem 1.6rem 0.2rem;
             box-shadow: 2px 2px 4px #000000;
             padding: 1rem;
@@ -110,6 +110,8 @@
             font-size: 1rem;
             color: $terciarycolor;
             text-shadow: 1px 1px 1px #000000;
+
+            transition: background-color 0.8s ease-in-out;
 
             & i {
                 margin-right: 0rem;
@@ -129,6 +131,26 @@
 
             & i {
                 text-shadow: none;
+            }
+        }
+
+        & .hovered {
+            background-color: $terciarycolor;
+            border: solid 3px $principalcolor;
+            box-shadow: inset 0.5px 0.5px 1px #000000;
+            padding: 0.5rem 1.5rem;
+
+            font-size: 1.1rem;
+            font-style: italic;
+            color: $principalcolor;
+            text-shadow: -0.5px -0.5px 0.3px #000000;
+
+            transition: all 0.2s ease-in-out;
+
+            & i {
+                color: $secundarycolor;
+                font-size: 2.5rem;
+                text-shadow: 1px 1px 2px #000000;
             }
         }
 

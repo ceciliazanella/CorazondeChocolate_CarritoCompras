@@ -9,11 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     mostrarDetallesCompra();
     mostrarFormulariosInicioSesionYRegistro();
 
-
-
     function mostrarDetallesCompra() {
 
-        let detalleCompra = document.getElementById('detalleCompra');
+        let detalleCompra = document.getElementById("detalleCompra");
 
         let totalCarrito = 0;
 
@@ -35,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p>Unidad/es: ${item.unidad}</p><br>
                 <p>Total: $ ${precioTotalItem}<br><br>
                 ------<<<*>>>------<br></p><br>`;
+
             detalleCompra.appendChild(productoDiv);
 
         });
@@ -51,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p>---------*---------</p><br>
                 <p><span class="totalAPagar"><i class="bi bi-currency-dollar"></i> TOTAL A PAGAR $${totalConDescuento.toFixed(2)}</span></p><br>
                 <p>------<<<*>>>------</p><br><br>`;
+
             detalleCompra.appendChild(totalDiv);
 
         }
@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const mensajeInicioSesion = document.createElement("p");
             mensajeInicioSesion.innerHTML = '<h2><i class="bi bi-cake2"></i><br> Para poder Finalizar tu Compra ---><br> Iniciá tu Chocosesión o Regístrate !<br> <i class="bi bi-emoji-laughing"></i></h2>';
+
             contenedor.appendChild(mensajeInicioSesion);
 
             const formularioInicioSesion = document.createElement("form");
@@ -81,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <input type="email" id="emailIniciarSesion" placeholder="Correo electrónico" required>
                 <input type="password" id="contraseñaIniciarSesion" placeholder="Contraseña" required>
                 <button class="btnIniciarSesion" type="submit">Inicia tu Chocosesión <i class="bi bi-emoji-wink-fill"></i></button>`;
+
             contenedor.appendChild(formularioInicioSesion);
 
             const formularioRegistro = document.createElement("form");
@@ -93,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <input type="email" id="emailRegistro" placeholder="Correo Electrónico" required>
                 <input type="password" id="contraseñaRegistro" placeholder="Contraseña" required>
                 <button class="btnRegistrarse" type="submit">Registrate <i class="bi bi-emoji-laughing-fill"></i></button>`;
+
             contenedor.appendChild(formularioRegistro);
 
         } else {
@@ -171,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         usuarioLogueado = { email };
 
-        localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioLogueado));
+        localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioLogueado));
 
         ocultarFormulariosYMostrarFinalizarCompra();
 
@@ -183,11 +186,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         event.preventDefault();
 
-        let email = document.getElementById('emailRegistro').value;
+        let email = document.getElementById("emailRegistro").value;
 
-        let contraseña = document.getElementById('contraseñaRegistro').value;
+        let contraseña = document.getElementById("contraseñaRegistro").value;
 
-        const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || [];
+        const usuariosGuardados = JSON.parse(localStorage.getItem("usuarios")) || [];
 
         const usuarioExistente = usuariosGuardados.find(u => u.email === email);
 
@@ -199,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             usuariosGuardados.push({ email, contraseña });
 
-            localStorage.setItem('usuarios', JSON.stringify(usuariosGuardados));
+            localStorage.setItem("usuarios", JSON.stringify(usuariosGuardados));
 
             mostrarAlerta('<i class="bi bi-emoji-sunglasses"></i><br> Un éxito !<br> Te registraste correctamente en Corazón de Chocolate !<br> <i class="bi bi-emoji-heart-eyes"></i><br> Ya podés iniciar tu Chocosesión !', "exito");
             mostrarFormulariosInicioSesionYRegistro();
@@ -213,34 +216,33 @@ document.addEventListener("DOMContentLoaded", () => {
     function ocultarFormulariosYMostrarFinalizarCompra() {
 
         const contenedor = document.getElementById("contenedorInicioSesionRegistro");
+
         contenedor.innerHTML = '';
 
-        let botonFinalizarCompra = document.createElement('button');
+        let botonFinalizarCompra = document.createElement("button");
         botonFinalizarCompra.className = "botonFinalizarCompra";
-        botonFinalizarCompra.textContent = 'Finalizar Compra';
+        botonFinalizarCompra.textContent = "Finalizar Compra";
 
-        botonFinalizarCompra.addEventListener('click', finalizarCompra);
+        botonFinalizarCompra.addEventListener("click", finalizarCompra);
 
         contenedor.appendChild(botonFinalizarCompra);
 
         botonFinalizarCompra = document.querySelector(".botonFinalizarCompra");
 
         botonFinalizarCompra.addEventListener("mouseover", function () {
-    
+
             botonFinalizarCompra.classList.add("hovered");
-    
+
         });
-    
+
         botonFinalizarCompra.addEventListener("mouseout", function () {
-    
+
             botonFinalizarCompra.classList.remove("hovered");
-    
+
         });
 
     }
 
-
-    
     function finalizarCompra() {
 
         mostrarAlerta('<i class="bi bi-emoji-heart-eyes"></i><br> Gracias por confiar y comprar en Corazón de Chocolate !<br> <i class="bi bi-bag-heart-fill"></i><br> Te paso las formas e instrucciones de pago y entrega en el Correo Electrónico que mandamos a tu casilla de mail !<br> <i class="bi bi-envelope-heart"></i>', "exito");
