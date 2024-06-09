@@ -94,25 +94,21 @@ hr {
 body {
     min-width: 350px;
     max-width: 1980px;
-    margin: 0 auto;
     padding: 4rem;
 
     @include flex-center;
 }
 
-header {
-    @extend body;
-
-    margin: 4rem;
-}
-
 main {
-    @extend body;
-
+    min-width: 300px;
+    max-width: 1900px;
     margin: 4rem;
 
+    display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
 }
 
 .botonCerrarSesion {

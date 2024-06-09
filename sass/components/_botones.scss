@@ -69,7 +69,7 @@
 /*--- BOTÓN INICIAR SESIÓN ---*/
 .btnIniciarSesion {
     margin-top: 2rem;
-    padding: 1rem 2rem;
+    padding: 0.3rem 1.2rem;
 
     background-color: $principalcolor;
     box-shadow: 1.5px 1.5px 4px #000000;
@@ -85,12 +85,12 @@
 
     font-family: $principalfont;
     color: $terciarycolor;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.2rem;
     text-shadow: 1px 1px 1px #000000;
 
-    transition: all 0.8s ease-in-out;
+    transition: all 0.6s ease-in-out;
 
     & i {
         font-size: 2rem;
@@ -99,36 +99,29 @@
     &:active {
         transform: translateY(1px);
 
-        box-shadow: inset 1px 1px 4px #000000;
+        box-shadow: inset -1px -1px 8px #00000063;
         border: none;
 
-        text-shadow: -0.5px -0.5px 1px #000000;
+        text-shadow: -0.5px -0.5px 2px #000000;
     }
 
     &.hovered {
         background-color: $terciarycolor;
-        box-shadow: 1px 1px 4px #000000;
+        box-shadow: 1px 0.5px 6px #000000;
 
         color: $principalcolor;
-        text-shadow: none;
+        text-shadow: -0.2px -0.2px 2px #5e0b15;
         font-size: 1.1rem;
         font-weight: 800;
-        letter-spacing: 0.3rem;
+        letter-spacing: 0.2rem;
+
+        transition: all 0.4s ease-in-out;
     }
 }
 
 /*--- BOTÓN REGISTRARSE ---*/
 .btnRegistrarse {
     @extend .btnIniciarSesion;
-
-    &:active {
-        transform: translateY(1px);
-
-        box-shadow: inset 1px 1px 4px #000000;
-        border: none;
-
-        text-shadow: -0.5px -0.5px 1px #000000;
-    }
 }
 
 /*--- FINALIZAR COMPRA ---*/
@@ -136,33 +129,12 @@
     margin: 2rem 0;
 
     @extend .btnIniciarSesion;
-
-    &:active {
-        transform: translateY(1px);
-
-        box-shadow: none;
-
-        text-shadow: none;
-    }
-
-    & .hovered {
-        background-color: $terciarycolor;
-        box-shadow: none;
-
-        color: $principalcolor;
-        text-shadow: 0.2px 0.2px 1px #000000;
-        font-size: 1.2rem;
-        font-weight: 800;
-        letter-spacing: 0.3rem;
-
-        transition: all 0.2s ease-in-out;
-    }
-
 }
 
 /*--- CERRAR SESIÓN ---*/
 .botonCerrarSesion {
-    padding: 0.5rem 0.8rem;
+    width: 140px;
+    padding: 0.4rem 0.8rem;
 
     background-color: $principalcolor;
     border: solid 2px #bc8034;
@@ -171,12 +143,28 @@
 
     color: $terciarycolor;
     font-family: $principalfont;
-    font-size: 1rem;
+    font-size: 0.7rem;
     font-weight: 700;
     text-shadow: 1px 1px 1px #000000;
-    letter-spacing: 0.2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 30px;
 
     transition: background-color 0.8s ease-in-out;
+
+    @include md-760 {
+        position: absolute;
+        top: 50px;
+        right: 40px;
+    }
+
+    @include md-1400 {
+        right: 70px;
+    }
 
     &:active {
 
@@ -185,16 +173,6 @@
         box-shadow: none;
 
         text-shadow: none;
-    }
-
-    & .hovered {
-        background-color: $ultraligthcolor;
-        border: solid 4px #bc8034;
-
-        color: $secundarycolor;
-        font-size: 1.1rem;
-        font-weight: 800;
-        font-style: italic;
     }
 }
 
@@ -204,7 +182,7 @@
     border: solid 4px #bc8034;
 
     color: $secundarycolor;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: 800;
     font-style: italic;
 
@@ -217,4 +195,3 @@
         transition: all 0.4s ease-in-out;
     }
 }
-

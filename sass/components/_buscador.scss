@@ -19,6 +19,15 @@
         font-size: 2rem;
         color: $terciarycolor;
         text-shadow: 1px 1px 1px #5e0b15;
+
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            font-size: 2.5rem;
+            color: $secundarycolor;
+
+            transition: color 0.1s ease-in-out;
+        }
     }
 
     & input {
@@ -27,19 +36,21 @@
         padding: 0.6rem;
 
         border: solid 2px #bc8034;
-        box-shadow: -0.5px 0.5px 6px #000000;
+        box-shadow: 0.5px 0.5px 3px #5e0b15;
         border-radius: 0 0.6rem 0 0.6rem;
-        
+
         color: $principalcolor;
         font-style: italic;
+        font-weight: 600;
         outline: none;
     }
 
     & input:focus {
-        box-shadow: inset 1px 1px 4px #5e0b15;
+        box-shadow: inset 2px 2px 6px #5e0b15;
+        outline: solid 2px #bc8034;
     }
 
     & input:active {
-        box-shadow: inset 1px 1px 4px #5e0b15;
+        box-shadow: inset 2px 2px 6px #5e0b15;
     }
 }

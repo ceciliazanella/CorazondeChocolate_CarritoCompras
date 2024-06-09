@@ -1,0 +1,97 @@
+{
+
+    "tortasArtesanales": [
+
+        {
+            "id": 1,
+            "nombre": "Torta Lemmon Pie",
+            "img": "./images_menu_tortas_artesanales/1_lemmon_pie.webp",
+            "precio": 16500,
+            "unidad": 1,
+            "title": "Torta Lemmon Pie"
+        },
+
+        {
+            "id": 2,
+            "nombre": "Cheese Cake Frutos Rojos",
+            "img": "./images_menu_tortas_artesanales/2_cheesecake_frutosrojos.webp",
+            "precio": 26000,
+            "unidad": 1,
+            "title": "Postre Cheese Cake Frutos Rojos"
+        },
+
+        {
+            "id": 3,
+            "nombre": "Crumble de Manzana",
+            "img": "./images_menu_tortas_artesanales/3_crumble_manzana.webp",
+            "precio": 16500,
+            "unidad": 1,
+            "title": "Crumble de Manzana"
+        },
+
+        {
+            "id": 4,
+            "nombre": "Chocotorta",
+            "img": "./images_menu_tortas_artesanales/4_chocotorta.webp",
+            "precio": 25000,
+            "unidad": 1,
+            "title": "Chocotorta"
+        },
+
+        {
+            "id": 5,
+            "nombre": "Tarta Frutal",
+            "img": "./images_menu_tortas_artesanales/5_tarta_frutal.webp",
+            "precio": 16500,
+            "unidad": 1,
+            "title": "Tarta Frutal"
+        },
+
+        {
+            "id": 6,
+            "nombre": "Postre Balcarse",
+            "img": "./images_menu_tortas_artesanales/6_postre_balcarse.webp",
+            "precio": 25000,
+            "unidad": 1,
+            "title": "Torta Postre tipo Balcarse"
+        },
+
+        {
+            "id": 7,
+            "nombre": "Torta Brownie Clásica",
+            "img": "./images_menu_tortas_artesanales/7_torta_brownie.webp",
+            "precio": 20000,
+            "unidad": 1,
+            "title": "Torta Brownie Clásica"
+        },
+
+        {
+            "id": 8,
+            "nombre": "Torta Selva Negra",
+            "img": "./images_menu_tortas_artesanales/8_selva_negra.webp",
+            "precio": 30000,
+            "unidad": 1,
+            "title": "Torta Selva Negra"
+        },
+
+        {
+            "id": 9,
+            "nombre": "Torta Doble Oreo",
+            "img": "./images_menu_tortas_artesanales/9_torta_doble_oreo.webp",
+            "precio": 26000,
+            "unidad": 1,
+            "title": "Torta Doble Oreo"
+        },
+
+        {
+            "id": 10,
+            "nombre": "Torta Explosión Oreo",
+            "img": "./images_menu_tortas_artesanales/10_torta_explosion_oreo.webp",
+            "precio": 26000,
+            "unidad": 1,
+            "title": "Torta Explosión Oreo"
+        }
+
+    ]
+
+}
