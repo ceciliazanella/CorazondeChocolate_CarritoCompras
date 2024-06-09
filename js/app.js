@@ -31,21 +31,18 @@ async function inicializar() {
     } else {
         console.info("El Usuario no está logueado.");
     }
+
+    if (window.location.pathname.includes("index.html")) {
+        let productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    
+        if (usuarioLogueado !== null & productosCarrito.length > 0) {
+            mostrarAlerta(`¡Tenés productos en tu carrito!<br> <i class="bi bi-cart-fill"></i><br> ¡No te olvides de utilizar tu código de descuento!<br> <i class="bi bi-percent"></i>`, "info");
+            console.info("Hay productos en el carrito.");
+        }
+    }
 }
 
 document.addEventListener("DOMContentLoaded", inicializar);
-
-
-
-if (window.location.pathname.includes("index.html")) {
-    let usuarioLogueado = localStorage.getItem("usuarioLogueado");
-    let productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-    if (usuarioLogueado !== null & productosCarrito.length > 0) {
-        mostrarAlerta(`¡Tenés productos en tu carrito!<br> <i class="bi bi-cart-fill"></i><br> ¡No te olvides de utilizar tu código de descuento!<br> <i class="bi bi-percent"></i>`, "info");
-        console.info("Hay productos en el carrito.");
-    }
-}
 
 
 
