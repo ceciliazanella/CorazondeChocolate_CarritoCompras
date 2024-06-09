@@ -1,6 +1,6 @@
 async function obtenerTortasDesdeJSON() {
     try {
-        const respuesta = await fetch("../json/tortas_artesanales.json");
+        const respuesta = await fetch("./json/tortas_artesanales.json");
 
         if (!respuesta.ok) {
             throw new Error("La Respuesta no tuvo éxito...");

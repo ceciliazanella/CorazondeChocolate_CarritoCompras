@@ -14,8 +14,8 @@ const contenedorRedes = createElementWithClass("section", "contenedor__redes");
 
 const redesList = document.createElement("ul");
 
-const instagramLi = createSocialMediaLink("https://www.instagram.com/corazon.de.chocolate.cz", "../icons/instagram.svg", "Ícono de Instagram");
-const facebookLi = createSocialMediaLink("https://www.facebook.com/CZ.corazon.de.chocolate", "../icons/facebook.svg", "Ícono de Facebook");
+const instagramLi = createSocialMediaLink("https://www.instagram.com/corazon.de.chocolate.cz", "./icons/instagram.svg", "Ícono de Instagram");
+const facebookLi = createSocialMediaLink("https://www.facebook.com/CZ.corazon.de.chocolate", "./icons/facebook.svg", "Ícono de Facebook");
 
 appendChildrenToParent(redesList, [instagramLi, facebookLi]);
 contenedorRedes.appendChild(redesList);
@@ -40,7 +40,7 @@ function createContactDiv(className, title, ...text) {
 
     const liIcon = document.createElement("li");
     const icon = document.createElement("img");
-    icon.src = `../icons/${className}.svg`;
+    icon.src = `./icons/${className}.svg`;
     icon.alt = `Ícono de ${title}`;
     icon.className = "icon";
 
