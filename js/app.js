@@ -41,7 +41,7 @@ if (window.location.pathname.includes("index.html")) {
     let productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
     let descuentoAplicado = localStorage.getItem("descuento");
 
-    if (productosCarrito.length > 0 || descuentoAplicado !== null) {
+    if (productosCarrito.length > 0 || descuentoAplicado === null) {
         mostrarAlerta(`¡Tenés productos en tu carrito!<br> <i class="bi bi-cart-fill"></i><br> ¡No te olvides de utilizar tu código de descuento!<br> <i class="bi bi-percent"></i>`, "info");
         console.info("Hay productos en el carrito.");
     }
