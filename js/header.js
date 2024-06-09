@@ -1,13 +1,17 @@
-function crearLogo(rutaLogo) {
-    const logoImg = document.createElement("img");
-    logoImg.src = rutaLogo;
-    logoImg.alt = "Logo de Corazón de Chocolate";
-    logoImg.className = "logo";
+const paginaActual = window.location.pathname;
 
-    const logoContainer = document.querySelector(".logo");
+function obtenerRutaLogo() {
+    return paginaActual.includes("detalles_compra.html") ? "../logo/" : "./logo/";
+}
 
-    logoContainer.appendChild(logoImg);
-};
+const logoImg = document.createElement("img");
+logoImg.src = obtenerRutaLogo() + "logo.svg";
+logoImg.alt = "Logo de Corazón de Chocolate";
+logoImg.className = "logo";
+
+const logoContainer = document.querySelector(".logo");
+
+logoContainer.appendChild(logoImg);
 
 
 

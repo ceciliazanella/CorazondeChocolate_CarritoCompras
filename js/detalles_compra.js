@@ -235,7 +235,3 @@ document.addEventListener("DOMContentLoaded", () => {
         carritoGuardado.length = 0;
     }
 });
-
-
-
-crearLogo("../logo/logo.svg");

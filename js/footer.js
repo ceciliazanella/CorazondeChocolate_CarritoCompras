@@ -1,18 +1,6 @@
-const currentPage = window.location.pathname.split("/").pop();
-
-function getImageBasePath() {
-    if (currentPage === "index.html") {
-        return "./icons/";
-    } else if (currentPage === "detalles_compra.html") {
-        return "../icons/";
-    }
+function obtenerRutaIconos() {
+    return paginaActual.includes("detalles_compra.html") ? "../icons/" : "./icons/";
 }
-
-const basePath = getImageBasePath();
-
-const iconSrc = `${basePath}${className}.svg`;
-const instagramSrc = `${basePath}instagram.svg`;
-const facebookSrc = `${basePath}facebook.svg`;
 
 
 
@@ -32,8 +20,8 @@ const contenedorRedes = createElementWithClass("section", "contenedor__redes");
 
 const redesList = document.createElement("ul");
 
-const instagramLi = createSocialMediaLink("https://www.instagram.com/corazon.de.chocolate.cz", `${basePath}instagram.svg`, "Ícono de Instagram");
-const facebookLi = createSocialMediaLink("https://www.facebook.com/CZ.corazon.de.chocolate", `${basePath}facebook.svg`, "Ícono de Facebook");
+const instagramLi = createSocialMediaLink("https://www.instagram.com/corazon.de.chocolate.cz", obtenerRutaIconos() + "instagram.svg", "Ícono de Instagram");
+const facebookLi = createSocialMediaLink("https://www.facebook.com/CZ.corazon.de.chocolate", obtenerRutaIconos() + "facebook.svg", "Ícono de Facebook");
 
 appendChildrenToParent(redesList, [instagramLi, facebookLi]);
 contenedorRedes.appendChild(redesList);
@@ -58,7 +46,7 @@ function createContactDiv(className, title, ...text) {
 
     const liIcon = document.createElement("li");
     const icon = document.createElement("img");
-    icon.src = `${basePath}${className}.svg`;
+    icon.src = obtenerRutaIconos() + `${className}.svg`;
     icon.alt = `Ícono de ${title}`;
     icon.className = "icon";
 
