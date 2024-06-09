@@ -756,4 +756,8 @@ vaciarCarrito();
 
 
 
+crearLogo("./logo/logo.svg");
+
+
+
 
