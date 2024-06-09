@@ -20,7 +20,9 @@ async function obtenerTortasDesdeJSON() {
 };
 
 async function inicializar() {
-    await obtenerTortasDesdeJSON();
+    if (window.location.pathname === "/index.html") {
+        await obtenerTortasDesdeJSON();
+    }
 
     let usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado")) || null;
 
@@ -30,6 +32,14 @@ async function inicializar() {
         cerrarSesion();
     } else {
         console.info("El Usuario no está logueado.");
+    }
+
+    let productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    let descuentoAplicado = localStorage.getItem("descuento");
+
+    if (productosCarrito.length > 0 || descuentoAplicado > 0) {
+        mostrarAlerta(`¡Tenés Productos en tu Carrito!<br> <i class="bi bi-cart-fill"></i><br> ¡No te olvides de utilizar tu Código de Descuento!<br> <i class="bi bi-percent"></i>`, "info");
+        console.info("Hay Productos en el Carrito.");
     }
 }
 
@@ -145,98 +155,6 @@ function cerrarSesion() {
     }
 }
 
-/*
-function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null, callbackCancelar = null) {
-    let alerta = document.createElement("div");
-    alerta.className = `alerta ${tipo}`;
-    alerta.style.opacity = 1;
-
-    let mensajeTexto = document.createElement("p");
-    mensajeTexto.innerHTML = mensaje;
-
-    alerta.appendChild(mensajeTexto);
-
-    if (conBotones) {
-
-        let botonesDiv = document.createElement("div");
-        botonesDiv.style.marginTop = "1rem";
-
-        let botonAceptar = document.createElement("button");
-        botonAceptar.innerHTML = '<i class="bi bi-check-square"></i>';
-        botonAceptar.className = "btn-aceptar";
-
-        botonAceptar.addEventListener("click", () => {
-
-            if (callbackAceptar) callbackAceptar();
-
-            mensajeAlerta.removeChild(alerta);
-
-        });
-
-        botonAceptar.addEventListener("mouseover", () => {
-
-            botonAceptar.classList.add("hovered");
-
-        });
-
-        botonAceptar.addEventListener("mouseout", () => {
-
-            botonAceptar.classList.remove("hovered");
-
-        });
-
-        let botonCancelar = document.createElement("button");
-        botonCancelar.innerHTML = '<i class="bi bi-x-square"></i>';
-        botonCancelar.className = "btn-cancelar";
-
-        botonCancelar.addEventListener("click", () => {
-
-            if (callbackCancelar) callbackCancelar();
-
-            mensajeAlerta.removeChild(alerta);
-
-        });
-
-        botonCancelar.addEventListener("mouseover", () => {
-
-            botonCancelar.classList.add("hovered");
-
-        });
-
-        botonCancelar.addEventListener("mouseout", () => {
-
-            botonCancelar.classList.remove("hovered");
-        });
-
-        botonesDiv.appendChild(botonAceptar);
-        botonesDiv.appendChild(botonCancelar);
-        alerta.appendChild(botonesDiv);
-
-    }
-
-    let mensajeAlerta = document.getElementById("mensaje-alerta");
-
-    mensajeAlerta.appendChild(alerta);
-
-    if (!conBotones) {
-
-        setTimeout(() => {
-
-            alerta.style.opacity = 0;
-
-            setTimeout(() => {
-
-                mensajeAlerta.removeChild(alerta);
-
-            }, 1000);
-
-        }, 3000);
-
-    }
-
-}
-*/
-
 
 
 function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null, callbackCancelar = null) {
@@ -264,9 +182,9 @@ function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null
             text: mensaje,
             duration: 3000,
             style: {
-                background: tipo === "success" ? "#d9cab3" : tipo === "warning" ? "#bc8034" : tipo === "error" ? "#5e0b15" : "#5e0b15",
-                borderColor: tipo === "success" ? "#90323d" : tipo === "warning" ? "#5e0b15" : tipo === "error" ? "#bc8034" : "#d9cab3",
-                color: tipo === "success" ? "#90323d" : tipo === "warning" ? "#5e0b15" : tipo === "error" ? "#bc8034" : "#d9cab3",
+                background: tipo === "success" ? "#d9cab3" : tipo === "warning" ? "#bc8034" : tipo === "info" ? "#d9cab3" : tipo === "error" ? "#5e0b15" : "#5e0b15",
+                borderColor: tipo === "success" ? "#90323d" : tipo === "warning" ? "#5e0b15" : tipo === "info" ? "#5e0b15" : tipo === "error" ? "#bc8034" : "#d9cab3",
+                color: tipo === "success" ? "#90323d" : tipo === "warning" ? "#5e0b15" : tipo === "info" ? "#5e0b15" : tipo === "error" ? "#bc8034" : "#d9cab3",
             },
             close: false,
             gravity: "top",
@@ -390,78 +308,80 @@ function renderizarCarrito() {
 
 renderizarCarrito();
 
-
-
 function actualizarProductosCarrito() {
-    productosCarrito.innerHTML = " ";
+    if (productosCarrito) {
+        productosCarrito.innerHTML = " ";
 
-    carrito.forEach(item => {
-        let itemDiv = document.createElement("div");
-        itemDiv.className = "item_carrito";
+        carrito.forEach(item => {
+            let itemDiv = document.createElement("div");
+            itemDiv.className = "item_carrito";
 
-        let nombreProducto = document.createElement("h3");
-        nombreProducto.textContent = item.nombre;
+            let nombreProducto = document.createElement("h3");
+            nombreProducto.textContent = item.nombre;
 
-        itemDiv.appendChild(nombreProducto);
+            itemDiv.appendChild(nombreProducto);
 
-        let imagenProductoDiv = document.createElement("div");
-        imagenProductoDiv.className = "imagen_producto---carrito";
+            let imagenProductoDiv = document.createElement("div");
+            imagenProductoDiv.className = "imagen_producto---carrito";
 
-        let imagenProducto = document.createElement("img");
-        imagenProducto.src = item.img;
-        imagenProducto.alt = item.nombre;
+            let imagenProducto = document.createElement("img");
+            imagenProducto.src = item.img;
+            imagenProducto.alt = item.nombre;
 
-        imagenProductoDiv.appendChild(imagenProducto);
-        itemDiv.appendChild(imagenProductoDiv);
+            imagenProductoDiv.appendChild(imagenProducto);
+            itemDiv.appendChild(imagenProductoDiv);
 
-        let unidadDiv = document.createElement("div");
-        unidadDiv.className = "unidad";
+            let unidadDiv = document.createElement("div");
+            unidadDiv.className = "unidad";
 
-        let restarBtn = document.createElement("button");
-        restarBtn.innerHTML = `<i class="bi bi-file-minus"></i>`;
+            let restarBtn = document.createElement("button");
+            restarBtn.innerHTML = `<i class="bi bi-file-minus"></i>`;
 
-        restarBtn.addEventListener("click", () => restarUnidad(item.id));
+            restarBtn.addEventListener("click", () => restarUnidad(item.id));
 
-        unidadDiv.appendChild(restarBtn);
+            unidadDiv.appendChild(restarBtn);
 
-        let cantidadUnidades = document.createElement("h4");
-        cantidadUnidades.textContent = `Unidad/es: ${item.unidad}`;
+            let cantidadUnidades = document.createElement("h4");
+            cantidadUnidades.textContent = `Unidad/es: ${item.unidad}`;
 
-        unidadDiv.appendChild(cantidadUnidades);
+            unidadDiv.appendChild(cantidadUnidades);
 
-        let sumarBtn = document.createElement("button");
-        sumarBtn.innerHTML = '<i class="bi bi-file-plus"></i>';
+            let sumarBtn = document.createElement("button");
+            sumarBtn.innerHTML = '<i class="bi bi-file-plus"></i>';
 
-        sumarBtn.addEventListener("click", () => sumarUnidad(item.id));
+            sumarBtn.addEventListener("click", () => sumarUnidad(item.id));
 
-        unidadDiv.appendChild(sumarBtn);
-        itemDiv.appendChild(unidadDiv);
+            unidadDiv.appendChild(sumarBtn);
+            itemDiv.appendChild(unidadDiv);
 
-        let precioDiv = document.createElement("div");
-        precioDiv.className = "precio";
+            let precioDiv = document.createElement("div");
+            precioDiv.className = "precio";
 
-        let precioUnitario = document.createElement("h5");
-        precioUnitario.innerHTML = `<i class="bi bi-bag-heart-fill"></i> Precio Unitario: $ ${item.precio}`;
+            let precioUnitario = document.createElement("h5");
+            precioUnitario.innerHTML = `<i class="bi bi-bag-heart-fill"></i> Precio Unitario: $ ${item.precio}`;
 
-        let precioTotal = document.createElement("h5");
-        precioTotal.innerHTML = `<i class="bi bi-cash-coin"></i> Precio Total: $ ${item.unidad * item.precio}`;
+            let precioTotal = document.createElement("h5");
+            precioTotal.innerHTML = `<i class="bi bi-cash-coin"></i> Precio Total: $ ${item.unidad * item.precio}`;
 
-        precioDiv.appendChild(precioUnitario);
-        precioDiv.appendChild(precioTotal);
-        itemDiv.appendChild(precioDiv);
+            precioDiv.appendChild(precioUnitario);
+            precioDiv.appendChild(precioTotal);
+            itemDiv.appendChild(precioDiv);
 
-        let eliminarBtn = document.createElement("button");
-        eliminarBtn.innerHTML = `<i class="bi bi-trash3-fill"></i>`;
+            let eliminarBtn = document.createElement("button");
+            eliminarBtn.innerHTML = `<i class="bi bi-trash3-fill"></i>`;
 
-        eliminarBtn.addEventListener("click", () => eliminarDelCarrito(item.id));
+            eliminarBtn.addEventListener("click", () => eliminarDelCarrito(item.id));
 
-        itemDiv.appendChild(eliminarBtn);
+            itemDiv.appendChild(eliminarBtn);
 
-        let hr = document.createElement("hr");
-        itemDiv.appendChild(hr);
+            let hr = document.createElement("hr");
+            itemDiv.appendChild(hr);
 
-        productosCarrito.appendChild(itemDiv);
-    });
+            productosCarrito.appendChild(itemDiv);
+        });
+    } else {
+        console.info("El Carrito está vacío.");
+    }
 }
 
 
@@ -504,7 +424,6 @@ async function agregarAlCarrito(id, cantidad) {
         actualizarProductosCarrito();
         actualizarTotalCarrito();
         actualizarLocalStorageCarrito();
-
     } catch (error) {
         console.error("Hubo un problema al agregar esta Torta al Carrito...", error);
     }
@@ -678,6 +597,8 @@ function actualizarTotalCarrito() {
         <h2><i class="bi bi-cart3"></i> Total Carrito: $ ${totalCarrito.toFixed(2)}</h2>
         <h3><i class="bi bi-percent"></i> Descuento: $ ${descuento.toFixed(2)}</h3>
         <h3><i class="bi bi-currency-dollar"></i> Total a Pagar: $ ${totalConDescuento.toFixed(2)}</h3>`;
+
+    localStorage.setItem("descuento", descuento);
 }
 
 let btnFinalizarCompra;
