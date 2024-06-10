@@ -22,22 +22,22 @@ async function obtenerTortasDesdeJSON() {
 async function inicializar() {
     await obtenerTortasDesdeJSON();
 
-    let usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado")) || null;
+    let usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado"));
 
     if (usuarioLogueado) {
-        console.info("El Usuario está logueado en su Sesión.");
-
+        console.log("El Usuario está logueado en su Sesión.");
+        
         cerrarSesion();
     } else {
-        console.info("El Usuario no está logueado.");
+        console.log("El Usuario no está logueado.");
     }
 
     if (window.location.pathname.includes("index.html")) {
         let productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
     
-        if (usuarioLogueado !== null & productosCarrito.length > 0) {
+        if (usuarioLogueado && productosCarrito.length > 0) {
             mostrarAlerta(`¡Tenés productos en tu carrito!<br> <i class="bi bi-cart-fill"></i><br> ¡No te olvides de utilizar tu código de descuento!<br> <i class="bi bi-percent"></i>`, "info");
-            console.info("Hay productos en el carrito.");
+            console.log("Hay productos en el carrito.");
         }
     }
 }

@@ -304,7 +304,7 @@ header .logo:hover {
 
 /*--- BOTONES FORMULARIOS ---*/
 /*--- BOTÓN INICIAR SESIÓN ---*/
-.btnIniciarSesion, .botonFinalizarCompra, .btnRegistrarse {
+.btnIniciarSesion, .botonSeguirComprando, .botonFinalizarCompra, .btnRegistrarse {
   margin-top: 2rem;
   padding: 0.3rem 1.2rem;
   background-color: #5e0b15;
@@ -323,16 +323,16 @@ header .logo:hover {
   text-shadow: 1px 1px 1px #000000;
   transition: all 0.6s ease-in-out;
 }
-.btnIniciarSesion i, .botonFinalizarCompra i, .btnRegistrarse i {
+.btnIniciarSesion i, .botonSeguirComprando i, .botonFinalizarCompra i, .btnRegistrarse i {
   font-size: 2rem;
 }
-.btnIniciarSesion:active, .botonFinalizarCompra:active, .btnRegistrarse:active {
+.btnIniciarSesion:active, .botonSeguirComprando:active, .botonFinalizarCompra:active, .btnRegistrarse:active {
   transform: translateY(1px);
   box-shadow: inset -1px -1px 8px rgba(0, 0, 0, 0.3882352941);
   border: none;
   text-shadow: -0.5px -0.5px 2px #000000;
 }
-.btnIniciarSesion.hovered, .hovered.botonFinalizarCompra, .hovered.btnRegistrarse {
+.btnIniciarSesion.hovered, .hovered.botonSeguirComprando, .hovered.botonFinalizarCompra, .hovered.btnRegistrarse {
   background-color: #bc8034;
   box-shadow: 1px 0.5px 6px #000000;
   color: #5e0b15;
@@ -347,6 +347,12 @@ header .logo:hover {
 /*--- FINALIZAR COMPRA ---*/
 .botonFinalizarCompra {
   margin: 2rem 0;
+}
+
+/*--- SEGUIR COMPRANDO ---*/
+.botonSeguirComprando {
+  background-color: #90323d;
+  color: #bc8034;
 }
 
 /*--- CERRAR SESIÓN ---*/

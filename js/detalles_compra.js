@@ -192,27 +192,36 @@ document.addEventListener("DOMContentLoaded", () => {
     function ocultarFormulariosYMostrarFinalizarCompra() {
         const contenedor = document.getElementById("contenedorInicioSesionRegistro");
         contenedor.innerHTML = " ";
-
+    
         let botonFinalizarCompra = document.createElement("button");
         botonFinalizarCompra.className = "botonFinalizarCompra";
         botonFinalizarCompra.textContent = "Finalizar Compra";
-
+    
         botonFinalizarCompra.addEventListener("click", finalizarCompra);
-
+    
         contenedor.appendChild(botonFinalizarCompra);
+    
+        let botonSeguirComprando = document.createElement("button");
+        botonSeguirComprando.className = "botonSeguirComprando";
+        botonSeguirComprando.textContent = "Seguir Comprando";
 
-        botonFinalizarCompra = document.querySelector(".botonFinalizarCompra");
-
-        botonFinalizarCompra.addEventListener("mouseover", () => {
-
-            botonFinalizarCompra.classList.add("hovered");
+        botonSeguirComprando.addEventListener("click", () => {
+            window.location.replace("../index.html");
         });
-
-        botonFinalizarCompra.addEventListener("mouseout", () => {
-            botonFinalizarCompra.classList.remove("hovered");
+    
+        contenedor.appendChild(botonSeguirComprando);
+    
+        [botonFinalizarCompra, botonSeguirComprando].forEach(boton => {
+            boton.addEventListener("mouseover", () => {
+                boton.classList.add("hovered");
+            });
+    
+            boton.addEventListener("mouseout", () => {
+                boton.classList.remove("hovered");
+            });
         });
     }
-
+    
 
 
     function finalizarCompra() {

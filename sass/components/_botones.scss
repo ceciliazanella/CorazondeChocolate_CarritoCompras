@@ -131,6 +131,14 @@
     @extend .btnIniciarSesion;
 }
 
+/*--- SEGUIR COMPRANDO ---*/
+.botonSeguirComprando {
+    @extend .btnIniciarSesion;
+    
+    background-color: $secundarycolor;
+    color: $terciarycolor;
+}
+
 /*--- CERRAR SESIÓN ---*/
 .botonCerrarSesion {
     width: 140px;
