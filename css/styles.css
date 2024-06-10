@@ -305,6 +305,7 @@ header .logo:hover {
 /*--- BOTONES FORMULARIOS ---*/
 /*--- BOTÓN INICIAR SESIÓN ---*/
 .btnIniciarSesion, .botonSeguirComprando, .botonFinalizarCompra, .btnRegistrarse {
+  width: 200px;
   margin-top: 2rem;
   padding: 0.3rem 1.2rem;
   background-color: #5e0b15;
@@ -1056,7 +1057,7 @@ i {
 /*--- FORMULARIOS ---*/
 .formularios {
   min-width: 300px;
-  padding: 6rem;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1068,12 +1069,13 @@ i {
 }
 @media (min-width: 760px) {
   .formularios {
-    width: 650px;
+    width: 700px;
   }
 }
 @media (min-width: 1000px) {
   .formularios {
     width: 800px;
+    padding: 6rem;
   }
 }
 
@@ -1115,12 +1117,12 @@ i {
 }
 @media (min-width: 760px) {
   .formularioInicioSesion input, .formularioRegistro input {
-    width: 650px;
+    width: 400px;
   }
 }
 @media (min-width: 1000px) {
   .formularioInicioSesion input, .formularioRegistro input {
-    width: 850px;
+    width: 680px;
   }
 }
 .formularioInicioSesion input:focus, .formularioRegistro input:focus {
@@ -1131,6 +1133,19 @@ i {
 /*--- REGISTRARSE ---*/
 .formularioRegistro {
   border-radius: 0 0 0 2rem;
+}
+.formularioRegistro input {
+  width: 260px;
+}
+@media (min-width: 760px) {
+  .formularioRegistro input {
+    width: 400px;
+  }
+}
+@media (min-width: 1000px) {
+  .formularioRegistro input {
+    width: 680px;
+  }
 }
 
 /*--- FOOTER ---*/
