@@ -4,11 +4,10 @@
     margin: 0.5rem;
 
     background-color: #00000000;
+
     border: none;
     box-shadow: 2px 2px 4px #000000;
     border-radius: 0 0.5rem 0 0.8rem;
-
-    cursor: pointer;
 
     color: $ultraligthcolor;
     font-family: $principalfont;
@@ -17,6 +16,8 @@
     letter-spacing: 0.2rem;
     text-shadow: 1px 1px 1px #000000;
     text-align: center;
+
+    cursor: pointer;
 
     transition: all 0.8s ease-in-out;
 
@@ -27,11 +28,11 @@
     }
 
     &:active {
-        transform: translateY(1px);
-
         box-shadow: none;
 
         text-shadow: none;
+
+        transform: translateY(1px);
 
         & i {
             color: $terciarycolor;
@@ -50,11 +51,11 @@
     color: $principalcolor;
 
     &:active {
-        transform: translateY(1px);
-
         box-shadow: none;
 
         text-shadow: none;
+
+        transform: translateY(1px);
 
         & i {
             color: $principalcolor;
@@ -73,6 +74,7 @@
     padding: 0.3rem 1.2rem;
 
     background-color: $principalcolor;
+
     box-shadow: 1.5px 1.5px 4px #000000;
     border: solid 2px #bc8034;
     border-radius: 0.8rem 0 1rem 0;
@@ -98,16 +100,17 @@
     }
 
     &:active {
-        transform: translateY(1px);
-
         box-shadow: inset -1px -1px 8px #00000063;
         border: none;
 
         text-shadow: -0.5px -0.5px 2px #000000;
+
+        transform: translateY(1px);
     }
 
     &.hovered {
         background-color: $terciarycolor;
+
         box-shadow: 1px 0.5px 6px #000000;
 
         color: $principalcolor;
@@ -135,8 +138,9 @@
 /*--- SEGUIR COMPRANDO ---*/
 .botonSeguirComprando {
     @extend .btnIniciarSesion;
-    
+
     background-color: $secundarycolor;
+
     color: $terciarycolor;
 }
 
@@ -146,6 +150,7 @@
     padding: 0.4rem 0.8rem;
 
     background-color: $principalcolor;
+
     border: solid 2px #bc8034;
     border-radius: 0.5rem 0 1rem 0;
     box-shadow: 1px 1px 4px #000000;
@@ -176,19 +181,19 @@
     }
 
     &:active {
-
-        transform: translateY(1px);
-
         box-shadow: none;
 
         text-shadow: none;
+
+        transform: translateY(1px);
     }
 }
 
 .hovered {
-    background-color: $ultraligthcolor;
     box-shadow: none;
     border: solid 4px #bc8034;
+
+    background-color: $ultraligthcolor;
 
     color: $secundarycolor;
     font-size: 0.9rem;

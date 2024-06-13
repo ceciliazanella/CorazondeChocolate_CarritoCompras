@@ -142,23 +142,23 @@ header .logo:hover {
 
 /*--- MENSAJES DE ALERTA ---*/
 .alerta {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 260px;
   min-height: 100px;
   padding: 2em;
-  gap: 2rem;
   border-radius: 1rem 0 1.5rem 0;
   box-shadow: 2px 2px 4px #000000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  gap: 2rem;
   font-family: "Lato", sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   font-style: italic;
   text-align: center;
-  z-index: 2000;
   transition: opacity 1s ease-in-out;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
 }
 .alerta i {
   font-size: 2.5rem;
@@ -260,7 +260,6 @@ header .logo:hover {
   border: none;
   box-shadow: 2px 2px 4px #000000;
   border-radius: 0 0.5rem 0 0.8rem;
-  cursor: pointer;
   color: #d9cab3;
   font-family: "Lato", sans-serif;
   font-size: 0.8rem;
@@ -268,6 +267,7 @@ header .logo:hover {
   letter-spacing: 0.2rem;
   text-shadow: 1px 1px 1px #000000;
   text-align: center;
+  cursor: pointer;
   transition: all 0.8s ease-in-out;
 }
 .btn-aceptar i, .btn-cancelar i {
@@ -275,9 +275,9 @@ header .logo:hover {
   transition: all 0.4s ease-in-out;
 }
 .btn-aceptar:active, .btn-cancelar:active {
-  transform: translateY(1px);
   box-shadow: none;
   text-shadow: none;
+  transform: translateY(1px);
 }
 .btn-aceptar:active i, .btn-cancelar:active i {
   color: #bc8034;
@@ -291,9 +291,9 @@ header .logo:hover {
   color: #5e0b15;
 }
 .btn-cancelar:active {
-  transform: translateY(1px);
   box-shadow: none;
   text-shadow: none;
+  transform: translateY(1px);
 }
 .btn-cancelar:active i {
   color: #5e0b15;
@@ -328,10 +328,10 @@ header .logo:hover {
   font-size: 2rem;
 }
 .btnIniciarSesion:active, .botonSeguirComprando:active, .botonFinalizarCompra:active, .btnRegistrarse:active {
-  transform: translateY(1px);
   box-shadow: inset -1px -1px 8px rgba(0, 0, 0, 0.3882352941);
   border: none;
   text-shadow: -0.5px -0.5px 2px #000000;
+  transform: translateY(1px);
 }
 .btnIniciarSesion.hovered, .hovered.botonSeguirComprando, .hovered.botonFinalizarCompra, .hovered.btnRegistrarse {
   background-color: #bc8034;
@@ -389,15 +389,15 @@ header .logo:hover {
   }
 }
 .botonCerrarSesion:active {
-  transform: translateY(1px);
   box-shadow: none;
   text-shadow: none;
+  transform: translateY(1px);
 }
 
 .hovered {
-  background-color: #d9cab3;
   box-shadow: none;
   border: solid 4px #bc8034;
+  background-color: #d9cab3;
   color: #90323d;
   font-size: 0.9rem;
   font-weight: 800;
@@ -555,11 +555,11 @@ header .logo:hover {
   text-shadow: 1px 1px 1px #5e0b15;
 }
 .tarjetas_tortas .tarjeta_producto button {
+  padding: 1rem;
   background-color: #5e0b15;
   border: solid 2px #bc8034;
   border-radius: 1.6rem 0.2rem 1.6rem 0.2rem;
   box-shadow: 2px 2px 4px #000000;
-  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -576,17 +576,17 @@ header .logo:hover {
   text-shadow: 1px 1px 1px #000000;
 }
 .tarjetas_tortas .tarjeta_producto button:active {
-  transform: translateY(1px);
   box-shadow: none;
   text-shadow: none;
+  transform: translateY(1px);
 }
 .tarjetas_tortas .tarjeta_producto button:active i {
   text-shadow: none;
 }
 .tarjetas_tortas .tarjeta_producto .hovered {
+  padding: 0 1.2rem;
   background-color: #bc8034;
   box-shadow: inset 1px 1px 3px #5e0b15;
-  padding: 0 1.2rem;
   font-size: 1.1rem;
   font-style: italic;
   color: #5e0b15;
@@ -634,9 +634,9 @@ header .logo:hover {
   justify-content: center;
 }
 .icon_carrito:active {
-  transform: translateY(1px);
   box-shadow: none;
   text-shadow: none;
+  transform: translateY(1px);
 }
 
 .ampliar {
@@ -835,9 +835,9 @@ header .logo:hover {
   transition: all 0.2s ease-in-out;
 }
 .contenedor_carrito button i:active {
-  transform: translateY(1px);
   color: #8c7a6b;
   text-shadow: none;
+  transform: translateY(1px);
 }
 .contenedor_carrito button i:hover {
   color: #bc8034;
@@ -864,9 +864,9 @@ header .logo:hover {
   transition: all 0.5s ease-in-out;
 }
 .contenedor_carrito .btn_finalizar:active {
-  transform: translateY(1px);
   color: #5e0b15;
   text-shadow: none;
+  transform: translateY(1px);
 }
 .contenedor_carrito .comprar {
   padding: 1rem 4rem;
@@ -938,9 +938,9 @@ header .logo:hover {
   width: 300px;
   height: 200px;
   padding: 1rem;
+  background-color: #bc8034;
   border: solid 2px #d9cab3;
   box-shadow: inset 2px 2px 6px #5e0b15;
-  background-color: #bc8034;
   border-radius: 0 0 2rem 0;
   display: flex;
   flex-direction: column;
@@ -972,9 +972,9 @@ header .logo:hover {
   text-shadow: 1px 1px 2px #5e0b15;
 }
 .total_carrito i:active {
-  transform: translateY(1px);
   color: #bc8034;
   text-shadow: none;
+  transform: translateY(1px);
 }
 
 /*--- DETALLE COMPRA ---*/
@@ -1150,8 +1150,8 @@ i {
 
 /*--- FOOTER ---*/
 footer {
-  background-color: #ffffff;
   padding: 4rem 0 6rem 0;
+  background-color: #ffffff;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

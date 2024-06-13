@@ -1,61 +1,40 @@
 async function obtenerTortasDesdeJSON() {
     try {
         const respuesta = await fetch("./json/tortas_artesanales.json");
-
-        if (!respuesta.ok) {
-            throw new Error("La Respuesta no tuvo éxito...");
-        }
+        if (!respuesta.ok) throw new Error("La Respuesta no tuvo éxito...");
 
         const datos = await respuesta.json();
         console.log(datos);
 
         const tortasArtesanales = datos.tortasArtesanales;
-
         mostrarProductos(tortasArtesanales);
 
         return tortasArtesanales;
     } catch (error) {
         console.error("Hubo un problema al querer obtener los Datos sobre las Tortas Artesanales...", error);
     }
-};
+}
 
 async function inicializar() {
     await obtenerTortasDesdeJSON();
 
-    let usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado"));
-
-    if (usuarioLogueado) {
-        console.log("El Usuario está logueado en su Sesión.");
-        
-        cerrarSesion();
-    } else {
-        console.log("El Usuario no está logueado.");
-    }
+    const usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado"));
+    usuarioLogueado ? (console.log("El Usuario está logueado en su Sesión."), cerrarSesion()) : console.log("El Usuario no está logueado.");
 
     if (window.location.pathname.includes("index.html")) {
-        let productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    
-        if (usuarioLogueado && productosCarrito.length > 0) {
-            mostrarAlerta(`¡Tenés productos en tu carrito!<br> <i class="bi bi-cart-fill"></i><br> ¡No te olvides de utilizar tu código de descuento!<br> <i class="bi bi-percent"></i>`, "info");
-            console.log("Hay productos en el carrito.");
-        }
+        const productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        usuarioLogueado && productosCarrito.length > 0 && (mostrarAlerta(`¡Tenés productos en tu carrito!<br> <i class="bi bi-cart-fill"></i><br> ¡No te olvides de utilizar tu código de descuento!<br> <i class="bi bi-percent"></i>`, "info"), console.log("Hay productos en el carrito."));
     }
 }
 
 document.addEventListener("DOMContentLoaded", inicializar);
 
-
-
 function mostrarProductos(tortas) {
     const contenedor = document.getElementById("tarjetasTortas");
-    if (!contenedor) return;
-    contenedor.innerHTML = " ";
-
-    tortas.forEach(torta => {
+    contenedor ? (contenedor.innerHTML = " ", tortas.forEach(torta => {
         const tarjeta = generarTarjetaProducto(torta);
-
         contenedor.appendChild(tarjeta);
-    });
+    })) : null;
 }
 
 function generarTarjetaProducto(torta) {
@@ -95,7 +74,6 @@ function generarTarjetaProducto(torta) {
 
     agregarBtn.addEventListener("click", () => {
         agregarAlCarrito(torta.id, parseInt(cantidadInput.value));
-
         console.log(`Se agregó/agregaron ${parseInt(cantidadInput.value)} Unidad/es de ${torta.nombre} al Carrito.`);
     });
 
@@ -125,20 +103,15 @@ function cerrarSesion() {
         botonCerrarSesion.textContent = "CERRAR SESIÓN";
 
         botonCerrarSesion.addEventListener("click", () => {
-
             mostrarAlerta(`¿Estás seguro/a que querés Cerrar tu Chocosesión?<br> <i class="bi bi-door-closed-fill"></i>`,
                 "warning",
                 true,
                 () => {
-
                     localStorage.removeItem("usuarioLogueado");
-
                     console.log("El Usuario cerró su Sesión.");
-
                     setTimeout(() => {
                         mostrarAlerta(`Tu Chocosesión se cerró exitosamente !<br> <i class="bi bi-emoji-laughing"></i>`, "success");
                     }, 500);
-
                     setTimeout(() => {
                         window.location.href = window.location.href;
                     }, 2000);
@@ -172,11 +145,7 @@ function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null
             confirmButtonText: `<i class="bi bi-check-square"></i>`,
             cancelButtonText: `<i class="bi bi-x-square"></i>`,
         }).then((result) => {
-            if (result.isConfirmed) {
-                if (callbackAceptar) callbackAceptar();
-            } else {
-                if (callbackCancelar) callbackCancelar();
-            }
+            result.isConfirmed ? (callbackAceptar && callbackAceptar()) : (callbackCancelar && callbackCancelar());
         });
     } else {
         Toastify({
@@ -205,14 +174,12 @@ function renderizarBuscador() {
 
     const buscador = document.createElement("h2");
     buscador.innerHTML = `<h2>Encontrá</br>tu torta favorita !</h2><i class="bi bi-search-heart"></i>`;
-
     buscadorProductos.appendChild(buscador);
 
     async function filtrarTortasPorNombre(nombre) {
-        let tortasArtesanales = await obtenerTortasDesdeJSON();
-        let nombreBuscado = nombre.trim().toLowerCase();
-        let tortasFiltradas = tortasArtesanales.filter(torta => torta.nombre.toLowerCase().includes(nombreBuscado));
-
+        const tortasArtesanales = await obtenerTortasDesdeJSON();
+        const nombreBuscado = nombre.trim().toLowerCase();
+        const tortasFiltradas = tortasArtesanales.filter(torta => torta.nombre.toLowerCase().includes(nombreBuscado));
         mostrarProductos(tortasFiltradas);
         console.log("Mostrando Resultados de la Búsqueda.");
     }
@@ -220,19 +187,15 @@ function renderizarBuscador() {
     const inputBuscar = document.getElementById("input-buscar");
 
     inputBuscar.addEventListener("input", (event) => {
-        let textoBuscado = event.target.value;
-
+        const textoBuscado = event.target.value;
         filtrarTortasPorNombre(textoBuscado);
-
         console.log("Se ingresó Dato en Buscador.");
     });
 
     inputBuscar.addEventListener("keyup", (event) => {
         if (event.key === "Enter") {
-            let textoBuscado = event.target.value;
-
+            const textoBuscado = event.target.value;
             filtrarTortasPorNombre(textoBuscado);
-
             inputBuscar.value = " ";
         }
     });
@@ -243,14 +206,8 @@ renderizarBuscador();
 
 
 window.addEventListener("load", () => {
-    let carritoGuardado = localStorage.getItem("carrito");
-
-    if (carritoGuardado) {
-        carrito = JSON.parse(carritoGuardado);
-
-        actualizarProductosCarrito();
-        actualizarTotalCarrito();
-    }
+    const carritoGuardado = localStorage.getItem("carrito");
+    carritoGuardado ? (carrito = JSON.parse(carritoGuardado), actualizarProductosCarrito(), actualizarTotalCarrito()) : null;
 });
 
 let carrito = [];
@@ -261,7 +218,7 @@ function renderizarCarrito() {
     const iconCarrito = document.getElementById("icon-carrito");
     contenedorCarrito = document.getElementById("contenedorCarrito");
     productosCarrito = document.getElementById("productos-carrito");
-    if (!iconCarrito & !contenedorCarrito & !productosCarrito) return;
+    if (!iconCarrito || !contenedorCarrito || !productosCarrito) return;
 
     iconCarrito.addEventListener("click", () => {
         contenedorCarrito.style.display = "flex";
@@ -309,10 +266,11 @@ function renderizarCarrito() {
 
 renderizarCarrito();
 
-function actualizarProductosCarrito() {
-    if (productosCarrito) {
-        productosCarrito.innerHTML = " ";
 
+
+function actualizarProductosCarrito() {
+    productosCarrito ? (
+        productosCarrito.innerHTML = " ",
         carrito.forEach(item => {
             let itemDiv = document.createElement("div");
             itemDiv.className = "item_carrito";
@@ -379,10 +337,8 @@ function actualizarProductosCarrito() {
             itemDiv.appendChild(hr);
 
             productosCarrito.appendChild(itemDiv);
-        });
-    } else {
-        console.info("El Carrito está vacío.");
-    }
+        })
+    ) : console.info("El Carrito está vacío.");
 }
 
 
@@ -409,17 +365,13 @@ async function agregarAlCarrito(id, cantidad) {
 
         if (cantidad <= 0) {
             mostrarAlerta(`Tenés que seleccionar una Cantidad que sea Mayor a 0...<br> <i class="bi bi-emoji-astonished"></i>`, "warning");
-
             return;
         }
 
         let index = carrito.findIndex(item => item.id === id);
 
-        if (index !== -1) {
-            carrito[index].unidad += cantidad;
-        } else {
-            carrito.push(new Torta(torta.id, torta.nombre, torta.img, torta.precio, cantidad));
-        }
+        index !== -1 ? carrito[index].unidad += cantidad : carrito.push(new Torta(torta.id, torta.nombre, torta.img, torta.precio, cantidad));
+
         mostrarAlerta(`<i class="bi bi-cart-check"></i><br> Agregaste tu ${torta.nombre} con éxito a tu Carrito !<br> <i class="bi bi-emoji-wink"></i>`, "success");
 
         actualizarProductosCarrito();
@@ -433,29 +385,25 @@ async function agregarAlCarrito(id, cantidad) {
 function sumarUnidad(id) {
     const index = carrito.findIndex(item => item.id === id);
 
-    if (index !== -1) {
-        carrito[index].unidad++;
-
-        console.log(`Se sumó Unidad de ${carrito[index].nombre} en el Carrito.`);
-
-        actualizarProductosCarrito();
-        actualizarTotalCarrito();
-        actualizarLocalStorageCarrito();
-    }
+    index !== -1 && (
+        carrito[index].unidad++,
+        console.log(`Se sumó Unidad de ${carrito[index].nombre} en el Carrito.`),
+        actualizarProductosCarrito(),
+        actualizarTotalCarrito(),
+        actualizarLocalStorageCarrito()
+    );
 }
 
 function restarUnidad(id) {
     const index = carrito.findIndex(item => item.id === id);
 
-    if (index !== -1 && carrito[index].unidad > 1) {
-        carrito[index].unidad--;
-
-        console.log(`Se restó Unidad de ${carrito[index].nombre} en el Carrito.`);
-
-        actualizarProductosCarrito();
-        actualizarTotalCarrito();
-        actualizarLocalStorageCarrito();
-    }
+    index !== -1 && carrito[index].unidad > 1 && (
+        carrito[index].unidad--,
+        console.log(`Se restó Unidad de ${carrito[index].nombre} en el Carrito.`),
+        actualizarProductosCarrito(),
+        actualizarTotalCarrito(),
+        actualizarLocalStorageCarrito()
+    );
 }
 
 function productoCarrito(id) {
@@ -468,21 +416,19 @@ function eliminarDelCarrito(id) {
     mostrarAlerta(`¿Estás seguro/a que querés eliminar tu ${productoEliminar.nombre} de tu Carrito...?<br> <i class="bi bi-cart-x"></i>`,
         "warning",
         true,
-        () => {
-            carrito = carrito.filter(item => item.id !== id);
-
-            mostrarAlerta(`<i class="bi bi-cart-dash"></i><br> Eliminamos con éxito tu ${productoEliminar.nombre} de tu Carrito !`, "success");
-            console.log(`${productoEliminar.nombre} se eliminó del Carrito.`);
-
-            actualizarProductosCarrito();
-            actualizarTotalCarrito();
-            actualizarLocalStorageCarrito();
-        },
-
-        () => {
-            mostrarAlerta(`<i class="bi bi-emoji-wink"></i><br> No eliminamos tu ${productoEliminar.nombre} de tu Carrito !`, "success");
-            console.log(`${productoEliminar.nombre} no se eliminó del Carrito.`);
-        });
+        () => (
+            carrito = carrito.filter(item => item.id !== id),
+            mostrarAlerta(`<i class="bi bi-cart-dash"></i><br> Eliminamos con éxito tu ${productoEliminar.nombre} de tu Carrito !`, "success"),
+            console.log(`${productoEliminar.nombre} se eliminó del Carrito.`),
+            actualizarProductosCarrito(),
+            actualizarTotalCarrito(),
+            actualizarLocalStorageCarrito()
+        ),
+        () => (
+            mostrarAlerta(`<i class="bi bi-emoji-wink"></i><br> No eliminamos tu ${productoEliminar.nombre} de tu Carrito !`, "success"),
+            console.log(`${productoEliminar.nombre} no se eliminó del Carrito.`)
+        )
+    );
 }
 
 
@@ -502,6 +448,8 @@ function calcularTotalCarrito() {
 
     return totalCarrito;
 }
+
+
 
 let codigoDescuentoDiv;
 let codigoDescuentoInput;
@@ -587,6 +535,8 @@ function inicializarTotalCarrito() {
 
 inicializarTotalCarrito();
 
+
+
 function actualizarTotalCarrito() {
     let totalCarrito = calcularTotalCarrito();
     let descuentoAplicado = localStorage.getItem("descuento");
@@ -601,6 +551,8 @@ function actualizarTotalCarrito() {
 
     localStorage.setItem("descuento", descuento);
 }
+
+
 
 let btnFinalizarCompra;
 
@@ -632,11 +584,15 @@ function finalizarCompra() {
 
 finalizarCompra();
 
+
+
 function resetearDescuento() {
     localStorage.removeItem("descuento");
 
     actualizarTotalCarrito();
 }
+
+
 
 let btnVaciarCarrito;
 
@@ -673,5 +629,3 @@ function vaciarCarrito() {
 }
 
 vaciarCarrito();
-
-

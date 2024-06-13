@@ -29,6 +29,7 @@
     padding: 1rem 2rem 3rem 2rem;
 
     background-color: $ligthcolor;
+
     border-radius: 0 2rem 0 0;
 
     display: flex;
@@ -80,6 +81,7 @@
 
     & input:focus {
         box-shadow: inset 3px 3px 8px #5e0b15;
+
         outline: solid 2px #bc8034;
     }
 }

@@ -5,6 +5,7 @@ header {
     margin: 4rem;
 
     background-color: $principalcolor;
+
     border-radius: 0 0 2rem 0;
     box-shadow: inset 4px 4px 6px #00000000;
 
@@ -46,7 +47,7 @@ header {
         &:hover {
             transition: all 6s ease-in-out;
 
-            transform: rotate(360deg); 
+            transform: rotate(360deg);
         }
 
         @include md-760 {
@@ -83,5 +84,4 @@ header {
         font-weight: 800;
         letter-spacing: 0.2rem;
     }
-
 }

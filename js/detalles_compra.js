@@ -6,8 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     mostrarDetallesCompra(carritoGuardado, descuentoGuardado);
     mostrarFormulariosInicioSesionYRegistro();
 
-
-
     function mostrarDetallesCompra(carrito, descuento) {
         let detalleCompra = document.getElementById("detalleCompra");
         let totalCarrito = 0;
@@ -15,8 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!detalleCompra) return;
 
         detalleCompra.innerHTML = `
-                    <h1>DETALLE DE TU COMPRA</h1>
-                    ${carrito.length === 0 ? `<i class="bi bi-exclamation-triangle-fill"></i><br>Mmm... <i class="bi bi-emoji-frown"></i><br> No tenés nada en tu Carrito para comprar...` : " "}`;
+            <h1>DETALLE DE TU COMPRA</h1>
+            ${carrito.length === 0 ? `<i class="bi bi-exclamation-triangle-fill"></i><br>Mmm... <i class="bi bi-emoji-frown"></i><br> No tenés nada en tu Carrito para comprar...` : " "}`;
 
         carrito.forEach(item => {
             let precioTotalItem = item.precio * item.unidad;
@@ -25,11 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
             let productoDiv = document.createElement("div");
             productoDiv.classList.add("producto");
             productoDiv.innerHTML = `
-                        <h3>${item.nombre}</h3>
-                        <p>Precio Unitario: $ ${item.precio}</p>
-                        <p>Unidad/es: ${item.unidad}</p><br>
-                        <p>Total: $ ${precioTotalItem}<br><br>
-                        ------<<<*>>>------<br></p><br>`;
+                <h3>${item.nombre}</h3>
+                <p>Precio Unitario: $ ${item.precio}</p>
+                <p>Unidad/es: ${item.unidad}</p><br>
+                <p>Total: $ ${precioTotalItem}<br><br>
+                ------<<<*>>>------<br></p><br>`;
 
             detalleCompra.appendChild(productoDiv);
         });
@@ -39,20 +37,18 @@ document.addEventListener("DOMContentLoaded", () => {
             let totalDiv = document.createElement("div");
             totalDiv.classList.add("total");
             totalDiv.innerHTML = `
-                        <p><i class="bi bi-cart3"></i> Total Parcial $ ${totalCarrito.toFixed(2)}</p><br>
-                        <p>---------*---------</p><br>
-                        <p><i class="bi bi-percent"></i> Descuento $ ${descuento.toFixed(2)}</p><br>
-                        <p>---------*---------</p><br>
-                        <p><span class="totalAPagar"><i class="bi bi-currency-dollar"></i> TOTAL A PAGAR $ ${totalConDescuento.toFixed(2)}</span></p><br>
-                        <p>------<<<*>>>------</p><br><br>`;
+                <p><i class="bi bi-cart3"></i> Total Parcial $ ${totalCarrito.toFixed(2)}</p><br>
+                <p>---------*---------</p><br>
+                <p><i class="bi bi-percent"></i> Descuento $ ${descuento.toFixed(2)}</p><br>
+                <p>---------*---------</p><br>
+                <p><span class="totalAPagar"><i class="bi bi-currency-dollar"></i> TOTAL A PAGAR $ ${totalConDescuento.toFixed(2)}</span></p><br>
+                <p>------<<<*>>>------</p><br><br>`;
 
             detalleCompra.appendChild(totalDiv);
         }
 
         console.log("Se ejecuta el Detalle de Compra.");
     }
-
-
 
     function mostrarFormulariosInicioSesionYRegistro() {
         const contenedor = document.getElementById("contenedorInicioSesionRegistro");
@@ -74,10 +70,10 @@ document.addEventListener("DOMContentLoaded", () => {
             formularioInicioSesion.addEventListener("submit", iniciarSesion);
 
             formularioInicioSesion.innerHTML = `
-                    <h2>Bienvenido/a ! <i class="bi bi-emoji-smile"></i></h2>
-                    <input type="email" id="emailIniciarSesion" placeholder="Correo electrónico" required>
-                    <input type="password" id="contraseñaIniciarSesion" placeholder="Contraseña" required>
-                    <button class="btnIniciarSesion" type="submit">Inicia tu Chocosesión <i class="bi bi-emoji-wink-fill"></i></button>`;
+                <h2>Bienvenido/a ! <i class="bi bi-emoji-smile"></i></h2>
+                <input type="email" id="emailIniciarSesion" placeholder="Correo electrónico" required>
+                <input type="password" id="contraseñaIniciarSesion" placeholder="Contraseña" required>
+                <button class="btnIniciarSesion" type="submit">Inicia tu Chocosesión <i class="bi bi-emoji-wink-fill"></i></button>`;
 
             contenedor.appendChild(formularioInicioSesion);
 
@@ -88,10 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
             formularioRegistro.addEventListener("submit", registrarse);
 
             formularioRegistro.innerHTML = `
-                    <h2>¿Todavía no tenés<br> tu Chocosesión? <i class="bi bi-emoji-smile-upside-down"></i></h2>
-                    <input type="email" id="emailRegistro" placeholder="Correo Electrónico" required>
-                    <input type="password" id="contraseñaRegistro" placeholder="Contraseña" required>
-                    <button class="btnRegistrarse" type="submit">Registrate <i class="bi bi-emoji-laughing-fill"></i></button>`;
+                <h2>¿Todavía no tenés<br> tu Chocosesión? <i class="bi bi-emoji-smile-upside-down"></i></h2>
+                <input type="email" id="emailRegistro" placeholder="Correo Electrónico" required>
+                <input type="password" id="contraseñaRegistro" placeholder="Contraseña" required>
+                <button class="btnRegistrarse" type="submit">Registrate <i class="bi bi-emoji-laughing-fill"></i></button>`;
 
             contenedor.appendChild(formularioRegistro);
 
@@ -121,8 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
         botonRegistrarse.classList.remove("hovered");
     });
 
-
-
     function iniciarSesion(event) {
         event.preventDefault();
 
@@ -147,8 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
-
     function inicioSesionExitoso(email) {
         mostrarAlerta(`<i class="bi bi-emoji-smile-upside-down"></i><br> Iniciaste tu Chocosesión con éxito !`, "success");
         console.log("Inicio de Sesión Éxitoso.");
@@ -159,8 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ocultarFormulariosYMostrarFinalizarCompra();
     }
-
-
 
     function registrarse(event) {
         event.preventDefault();
@@ -187,20 +177,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
-
     function ocultarFormulariosYMostrarFinalizarCompra() {
         const contenedor = document.getElementById("contenedorInicioSesionRegistro");
         contenedor.innerHTML = " ";
-    
+
         let botonFinalizarCompra = document.createElement("button");
         botonFinalizarCompra.className = "botonFinalizarCompra";
         botonFinalizarCompra.textContent = "Finalizar Compra";
-    
+
         botonFinalizarCompra.addEventListener("click", finalizarCompra);
-    
+
         contenedor.appendChild(botonFinalizarCompra);
-    
+
         let botonSeguirComprando = document.createElement("button");
         botonSeguirComprando.className = "botonSeguirComprando";
         botonSeguirComprando.textContent = "Seguir Comprando";
@@ -208,21 +196,19 @@ document.addEventListener("DOMContentLoaded", () => {
         botonSeguirComprando.addEventListener("click", () => {
             window.location.replace("../index.html");
         });
-    
+
         contenedor.appendChild(botonSeguirComprando);
-    
+
         [botonFinalizarCompra, botonSeguirComprando].forEach(boton => {
             boton.addEventListener("mouseover", () => {
                 boton.classList.add("hovered");
             });
-    
+
             boton.addEventListener("mouseout", () => {
                 boton.classList.remove("hovered");
             });
         });
     }
-    
-
 
     function finalizarCompra() {
         mostrarAlerta(`<i class="bi bi-emoji-heart-eyes"></i><br> Gracias por confiar y comprar en Corazón de Chocolate !<br> <i class="bi bi-bag-heart-fill"></i><br> Te paso las formas e instrucciones de pago y entrega en el Correo Electrónico que mandamos a tu casilla de mail !<br> <i class="bi bi-envelope-heart"></i>`, "success");
@@ -237,8 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.removeItem("descuento");
         }, 5000);
     }
-
-
 
     function vaciarCarrito() {
         carritoGuardado.length = 0;

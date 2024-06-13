@@ -1,7 +1,5 @@
 {
-
     "tortasArtesanales": [
-
         {
             "id": 1,
             "nombre": "Torta Lemmon Pie",
@@ -10,7 +8,6 @@
             "unidad": 1,
             "title": "Torta Lemmon Pie"
         },
-
         {
             "id": 2,
             "nombre": "Cheese Cake Frutos Rojos",
@@ -19,7 +16,6 @@
             "unidad": 1,
             "title": "Postre Cheese Cake Frutos Rojos"
         },
-
         {
             "id": 3,
             "nombre": "Crumble de Manzana",
@@ -28,7 +24,6 @@
             "unidad": 1,
             "title": "Crumble de Manzana"
         },
-
         {
             "id": 4,
             "nombre": "Chocotorta",
@@ -37,7 +32,6 @@
             "unidad": 1,
             "title": "Chocotorta"
         },
-
         {
             "id": 5,
             "nombre": "Tarta Frutal",
@@ -46,7 +40,6 @@
             "unidad": 1,
             "title": "Tarta Frutal"
         },
-
         {
             "id": 6,
             "nombre": "Postre Balcarse",
@@ -55,7 +48,6 @@
             "unidad": 1,
             "title": "Torta Postre tipo Balcarse"
         },
-
         {
             "id": 7,
             "nombre": "Torta Brownie Clásica",
@@ -64,7 +56,6 @@
             "unidad": 1,
             "title": "Torta Brownie Clásica"
         },
-
         {
             "id": 8,
             "nombre": "Torta Selva Negra",
@@ -73,7 +64,6 @@
             "unidad": 1,
             "title": "Torta Selva Negra"
         },
-
         {
             "id": 9,
             "nombre": "Torta Doble Oreo",
@@ -82,7 +72,6 @@
             "unidad": 1,
             "title": "Torta Doble Oreo"
         },
-
         {
             "id": 10,
             "nombre": "Torta Explosión Oreo",
@@ -91,7 +80,5 @@
             "unidad": 1,
             "title": "Torta Explosión Oreo"
         }
-
     ]
-
 }
