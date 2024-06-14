@@ -1,17 +1,17 @@
 async function obtenerTortasDesdeJSON() {
     try {
         const respuesta = await fetch("./json/tortas_artesanales.json");
-        if (!respuesta.ok) throw new Error("La Respuesta no tuvo éxito...");
+        if (!respuesta.ok) throw new Error("No se pudieron obtener los Datos de las Tortas Artesanales.");
 
         const datos = await respuesta.json();
-        console.log(datos);
+        const tortasArtesanales = datos?.tortasArtesanales || [];
 
-        const tortasArtesanales = datos.tortasArtesanales;
         mostrarProductos(tortasArtesanales);
 
         return tortasArtesanales;
     } catch (error) {
-        console.error("Hubo un problema al querer obtener los Datos sobre las Tortas Artesanales...", error);
+        console.error("Hubo un problema al querer obtener los Datos de las Tortas Artesanales:", error.message);
+        return "No se obtienen datos...";
     }
 }
 
@@ -23,7 +23,10 @@ async function inicializar() {
 
     if (window.location.pathname.includes("index.html")) {
         const productosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
-        usuarioLogueado && productosCarrito.length > 0 && (mostrarAlerta(`¡Tenés productos en tu carrito!<br> <i class="bi bi-cart-fill"></i><br> ¡No te olvides de utilizar tu código de descuento!<br> <i class="bi bi-percent"></i>`, "info"), console.log("Hay productos en el carrito."));
+        usuarioLogueado && productosCarrito.length > 0 && (
+            mostrarAlerta(`¡Tenés productos en tu carrito!<br> <i class="bi bi-cart-fill"></i><br> ¡No te olvides de utilizar tu código de descuento!<br> <i class="bi bi-percent"></i>`, "info"),
+            console.log("Hay productos en el carrito.")
+        );
     }
 }
 
@@ -31,10 +34,13 @@ document.addEventListener("DOMContentLoaded", inicializar);
 
 function mostrarProductos(tortas) {
     const contenedor = document.getElementById("tarjetasTortas");
-    contenedor ? (contenedor.innerHTML = " ", tortas.forEach(torta => {
-        const tarjeta = generarTarjetaProducto(torta);
-        contenedor.appendChild(tarjeta);
-    })) : null;
+    contenedor ? (
+        contenedor.innerHTML = " ",
+        tortas.forEach(torta => {
+            const tarjeta = generarTarjetaProducto(torta);
+            contenedor.appendChild(tarjeta);
+        })
+    ) : null;
 }
 
 function generarTarjetaProducto(torta) {
@@ -96,13 +102,13 @@ function cerrarSesion() {
     const header = document.querySelector("header");
     let botonCerrarSesion = document.getElementById("botonCerrarSesion");
 
-    if (!botonCerrarSesion) {
-        botonCerrarSesion = document.createElement("button");
-        botonCerrarSesion.id = "botonCerrarSesion";
-        botonCerrarSesion.className = "botonCerrarSesion";
-        botonCerrarSesion.textContent = "CERRAR SESIÓN";
+    botonCerrarSesion = !botonCerrarSesion ? (() => {
+        const nuevoBotonCerrarSesion = document.createElement("button");
+        nuevoBotonCerrarSesion.id = "botonCerrarSesion";
+        nuevoBotonCerrarSesion.className = "botonCerrarSesion";
+        nuevoBotonCerrarSesion.textContent = "CERRAR SESIÓN";
 
-        botonCerrarSesion.addEventListener("click", () => {
+        nuevoBotonCerrarSesion.addEventListener("click", () => {
             mostrarAlerta(`¿Estás seguro/a que querés Cerrar tu Chocosesión?<br> <i class="bi bi-door-closed-fill"></i>`,
                 "warning",
                 true,
@@ -118,21 +124,22 @@ function cerrarSesion() {
                 });
         });
 
-        botonCerrarSesion.addEventListener("mouseover", () => {
-            botonCerrarSesion.classList.add("hovered");
+        nuevoBotonCerrarSesion.addEventListener("mouseover", () => {
+            nuevoBotonCerrarSesion.classList.add("hovered");
         });
-        botonCerrarSesion.addEventListener("mouseout", () => {
-            botonCerrarSesion.classList.remove("hovered");
+        nuevoBotonCerrarSesion.addEventListener("mouseout", () => {
+            nuevoBotonCerrarSesion.classList.remove("hovered");
         });
 
-        header.appendChild(botonCerrarSesion);
-    }
+        header.appendChild(nuevoBotonCerrarSesion);
+        return nuevoBotonCerrarSesion;
+    })() : botonCerrarSesion;
 }
 
 
 
 function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null, callbackCancelar = null) {
-    if (conBotones) {
+    conBotones ? (() => {
         Swal.fire({
             icon: tipo,
             iconHtml: `<i class="bi bi-emoji-neutral"></i><br>`,
@@ -147,7 +154,7 @@ function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null
         }).then((result) => {
             result.isConfirmed ? (callbackAceptar && callbackAceptar()) : (callbackCancelar && callbackCancelar());
         });
-    } else {
+    })() : (() => {
         Toastify({
             text: mensaje,
             duration: 3000,
@@ -163,7 +170,7 @@ function mostrarAlerta(mensaje, tipo, conBotones = false, callbackAceptar = null
             className: "alertaToastify",
             escapeMarkup: false
         }).showToast();
-    }
+    })();
 }
 
 
@@ -176,26 +183,26 @@ function renderizarBuscador() {
     buscador.innerHTML = `<h2>Encontrá</br>tu torta favorita !</h2><i class="bi bi-search-heart"></i>`;
     buscadorProductos.appendChild(buscador);
 
-    async function filtrarTortasPorNombre(nombre) {
+    const filtrarTortasPorNombre = async (nombre) => {
         const tortasArtesanales = await obtenerTortasDesdeJSON();
         const nombreBuscado = nombre.trim().toLowerCase();
         const tortasFiltradas = tortasArtesanales.filter(torta => torta.nombre.toLowerCase().includes(nombreBuscado));
         mostrarProductos(tortasFiltradas);
         console.log("Mostrando Resultados de la Búsqueda.");
-    }
+    };
 
     const inputBuscar = document.getElementById("input-buscar");
 
     inputBuscar.addEventListener("input", (event) => {
         const textoBuscado = event.target.value;
-        filtrarTortasPorNombre(textoBuscado);
+        textoBuscado && filtrarTortasPorNombre(textoBuscado);
         console.log("Se ingresó Dato en Buscador.");
     });
 
     inputBuscar.addEventListener("keyup", (event) => {
         if (event.key === "Enter") {
             const textoBuscado = event.target.value;
-            filtrarTortasPorNombre(textoBuscado);
+            textoBuscado && filtrarTortasPorNombre(textoBuscado);
             inputBuscar.value = " ";
         }
     });
@@ -437,23 +444,13 @@ function actualizarLocalStorageCarrito() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-
-
 function calcularTotalCarrito() {
-    let totalCarrito = 0;
-
-    carrito.forEach(item => {
-        totalCarrito += item.precio * item.unidad;
-    });
-
-    return totalCarrito;
+    return carrito.reduce((totalCarrito, item) => totalCarrito + item.precio * item.unidad, 0);
 }
 
 
 
-let codigoDescuentoDiv;
-let codigoDescuentoInput;
-let codigoDescuentoButton;
+let codigoDescuentoDiv, codigoDescuentoInput, codigoDescuentoButton;
 
 function aplicarDescuento() {
     codigoDescuentoDiv = document.createElement("div");
@@ -463,32 +460,25 @@ function aplicarDescuento() {
             <h2>Código de Descuento</h2>
         </div>`;
 
-    contenedorCarrito = document.getElementById("contenedorCarrito");
+    const contenedorCarrito = document.getElementById("contenedorCarrito");
     if (!contenedorCarrito) return;
     contenedorCarrito.appendChild(codigoDescuentoDiv);
 
     codigoDescuentoInput = document.createElement("input");
     codigoDescuentoInput.setAttribute("placeholder", "Código de Descuento");
-
     codigoDescuentoDiv.appendChild(codigoDescuentoInput);
 
     codigoDescuentoButton = document.createElement("button");
     codigoDescuentoButton.className = "codigoDescuentoBtn";
     codigoDescuentoButton.textContent = "Aplicar Descuento";
-
     codigoDescuentoDiv.appendChild(codigoDescuentoButton);
 
-    codigoDescuentoButton.addEventListener("mouseover", () => {
-        codigoDescuentoButton.classList.add("remarcar");
-    });
-
-    codigoDescuentoButton.addEventListener("mouseout", () => {
-        codigoDescuentoButton.classList.remove("remarcar");
-    });
+    codigoDescuentoButton.addEventListener("mouseover", () => codigoDescuentoButton.classList.add("remarcar"));
+    codigoDescuentoButton.addEventListener("mouseout", () => codigoDescuentoButton.classList.remove("remarcar"));
 
     codigoDescuentoButton.addEventListener("click", () => {
-        let totalCarritoActual = calcularTotalCarrito();
-        let codigoIngresado = codigoDescuentoInput.value;
+        const totalCarritoActual = calcularTotalCarrito();
+        const codigoIngresado = codigoDescuentoInput.value;
         let descuento = 0;
 
         if (codigoIngresado === "cielodejupiter") {
@@ -496,23 +486,17 @@ function aplicarDescuento() {
 
             mostrarAlerta(`<i class="bi bi-emoji-wink"></i><br> ¡Eso!<br><i class="bi bi-percent"></i><br> ---> ¡Tienes un 20% de Descuento en esta Compra!`, "success");
             console.log("Código de Descuento Válido. Se realiza el 20% de Descuento sobre la Compra Total.");
-
-            localStorage.setItem("descuento", descuento);
-
             codigoDescuentoDiv.style.display = "none";
 
+            localStorage.setItem("descuento", descuento);
         } else {
             intentosCodigoDescuento++;
-
-            mostrarAlerta(`<i class="bi bi-exclamation-circle-fill"></i><br> ¡Ouch!<br> ¡Ese Código no está bien...!<br><i class="bi bi-emoji-grimace"></i><br> ¡Inténtalo de nuevo!`, "error");
-            console.log("Código de Descuento inválido.");
-
-            if (intentosCodigoDescuento >= 3) {
-                codigoDescuentoDiv.style.display = "none";
-
-                mostrarAlerta(`<i class="bi bi-ban"></i><br> ¡Será en otra oportunidad!<br><i class="bi bi-emoji-tear"></i><br> ¡Excediste el número de intentos permitidos!`, "error");
-                console.log("Excedió los 3 Intentos para ingresar el Código de Descuento válido. No se aplica Descuento.");
-            }
+            const mensaje = intentosCodigoDescuento >= 3 ? `<i class="bi bi-ban"></i><br> ¡Será en otra oportunidad!<br><i class="bi bi-emoji-tear"></i><br> ¡Excediste el número de intentos permitidos!` :
+                `<i class="bi bi-exclamation-circle-fill"></i><br> ¡Ouch!<br> ¡Ese Código no está bien...!<br><i class="bi bi-emoji-grimace"></i><br> ¡Inténtalo de nuevo!`;
+            const tipoAlerta = intentosCodigoDescuento >= 3 ? "error" : "error";
+            mostrarAlerta(mensaje, tipoAlerta);
+            console.log(intentosCodigoDescuento >= 3 ? "Excedió los 3 Intentos para ingresar el Código de Descuento válido. No se aplica Descuento." : "Código de Descuento inválido.");
+            if (intentosCodigoDescuento >= 3) codigoDescuentoDiv.style.display = "none";
         }
         actualizarTotalCarrito();
     });
@@ -523,24 +507,21 @@ aplicarDescuento();
 let codigoDescuento = " ";
 let intentosCodigoDescuento = 0;
 
+
+
 let totalCarritoDiv;
 
 function inicializarTotalCarrito() {
     totalCarritoDiv = document.createElement("div");
     totalCarritoDiv.id = "total-carrito";
-
-    if (!contenedorCarrito) return;
-    contenedorCarrito.appendChild(totalCarritoDiv);
+    contenedorCarrito && contenedorCarrito.appendChild(totalCarritoDiv);
 }
 
 inicializarTotalCarrito();
 
-
-
 function actualizarTotalCarrito() {
     let totalCarrito = calcularTotalCarrito();
-    let descuentoAplicado = localStorage.getItem("descuento");
-    let descuento = descuentoAplicado ? parseFloat(descuentoAplicado) : 0;
+    let descuento = parseFloat(localStorage.getItem("descuento")) || 0;
     let totalConDescuento = totalCarrito - descuento;
 
     totalCarritoDiv.className = "total_carrito";
@@ -552,18 +533,13 @@ function actualizarTotalCarrito() {
     localStorage.setItem("descuento", descuento);
 }
 
-
-
 let btnFinalizarCompra;
 
 function finalizarCompra() {
     btnFinalizarCompra = document.createElement("button");
     btnFinalizarCompra.className = "btn_finalizar";
     btnFinalizarCompra.textContent = "COMPRAR";
-
-    contenedorCarrito = document.getElementById("contenedorCarrito");
-    if (!contenedorCarrito) return;
-    contenedorCarrito.appendChild(btnFinalizarCompra);
+    contenedorCarrito && contenedorCarrito.appendChild(btnFinalizarCompra);
 
     btnFinalizarCompra.addEventListener("click", () => {
         if (carrito.length === 0) {
@@ -587,24 +563,23 @@ finalizarCompra();
 
 
 function resetearDescuento() {
-    localStorage.removeItem("descuento");
+    localStorage.setItem("descuento", 0);
+
+    descuento = 0;
+    intentosCodigoDescuento = 0;
 
     actualizarTotalCarrito();
 }
 
-
-
-let btnVaciarCarrito;
-
 function vaciarCarrito() {
-    btnVaciarCarrito = document.createElement("button");
+    const btnVaciarCarrito = document.createElement("button");
     btnVaciarCarrito.className = "vaciarCarritoBtn";
     btnVaciarCarrito.innerHTML = `<i class="bi bi-cart-dash"></i><br>Vaciar Carrito`;
 
-    contenedorCarrito = document.getElementById("contenedorCarrito");
+    const contenedorCarrito = document.getElementById("contenedorCarrito");
     if (!contenedorCarrito) {
         console.info("Los Productos del Carrito están informados en el Detalle de Compra.");
-        return
+        return;
     }
     contenedorCarrito.appendChild(btnVaciarCarrito);
 
@@ -617,6 +592,9 @@ function vaciarCarrito() {
         actualizarProductosCarrito();
         actualizarTotalCarrito();
         actualizarLocalStorageCarrito();
+
+        [codigoDescuentoDiv, codigoDescuentoInput, codigoDescuentoButton].forEach(element => element.style.display = "flex");
+        codigoDescuentoInput.value = "";
     });
 
     btnVaciarCarrito.addEventListener("mouseover", () => {

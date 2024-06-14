@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let carritoGuardado = JSON.parse(localStorage.getItem("carrito")) || [];
-    let descuentoGuardado = parseFloat(localStorage.getItem("descuento")) || 0;
+    const carritoGuardado = JSON.parse(localStorage.getItem("carrito")) || [];
+    const descuentoGuardado = parseFloat(localStorage.getItem("descuento")) || 0;
     let usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado")) || null;
 
     mostrarDetallesCompra(carritoGuardado, descuentoGuardado);
     mostrarFormulariosInicioSesionYRegistro();
 
+
+
     function mostrarDetallesCompra(carrito, descuento) {
-        let detalleCompra = document.getElementById("detalleCompra");
+        const detalleCompra = document.getElementById("detalleCompra");
         let totalCarrito = 0;
 
         if (!detalleCompra) return;
@@ -17,10 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
             ${carrito.length === 0 ? `<i class="bi bi-exclamation-triangle-fill"></i><br>Mmm... <i class="bi bi-emoji-frown"></i><br> No tenés nada en tu Carrito para comprar...` : " "}`;
 
         carrito.forEach(item => {
-            let precioTotalItem = item.precio * item.unidad;
+            const precioTotalItem = item.precio * item.unidad;
             totalCarrito += precioTotalItem;
 
-            let productoDiv = document.createElement("div");
+            const productoDiv = document.createElement("div");
             productoDiv.classList.add("producto");
             productoDiv.innerHTML = `
                 <h3>${item.nombre}</h3>
@@ -33,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (carrito.length > 0) {
-            let totalConDescuento = totalCarrito - descuento;
-            let totalDiv = document.createElement("div");
+            const totalConDescuento = totalCarrito - descuento;
+            const totalDiv = document.createElement("div");
             totalDiv.classList.add("total");
             totalDiv.innerHTML = `
                 <p><i class="bi bi-cart3"></i> Total Parcial $ ${totalCarrito.toFixed(2)}</p><br>
@@ -49,6 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log("Se ejecuta el Detalle de Compra.");
     }
+
+
 
     function mostrarFormulariosInicioSesionYRegistro() {
         const contenedor = document.getElementById("contenedorInicioSesionRegistro");
@@ -96,50 +100,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    let botonIniciarSesion = document.querySelector(".btnIniciarSesion");
-    if (!botonIniciarSesion) return;
+    const botones = document.querySelectorAll(".btnIniciarSesion, .btnRegistrarse");
+    botones.forEach(boton => {
+        boton.addEventListener("mouseover", () => {
+            boton.classList.add("hovered");
+        });
 
-    botonIniciarSesion.addEventListener("mouseover", () => {
-        botonIniciarSesion.classList.add("hovered");
+        boton.addEventListener("mouseout", () => {
+            boton.classList.remove("hovered");
+        });
     });
 
-    botonIniciarSesion.addEventListener("mouseout", () => {
-        botonIniciarSesion.classList.remove("hovered");
-    });
 
-    let botonRegistrarse = document.querySelector(".btnRegistrarse");
-
-    botonRegistrarse.addEventListener("mouseover", () => {
-        botonRegistrarse.classList.add("hovered");
-    });
-
-    botonRegistrarse.addEventListener("mouseout", () => {
-        botonRegistrarse.classList.remove("hovered");
-    });
 
     function iniciarSesion(event) {
         event.preventDefault();
 
-        let emailInput = document.getElementById("emailIniciarSesion");
-        let contraseñaInput = document.getElementById("contraseñaIniciarSesion");
-
-        let email = emailInput.value;
-        let contraseña = contraseñaInput.value;
+        const email = document.getElementById("emailIniciarSesion").value.toLowerCase();
+        const contraseña = document.getElementById("contraseñaIniciarSesion").value;
 
         const usuariosGuardados = JSON.parse(localStorage.getItem("usuarios")) || [];
-        let usuarioEncontrado = usuariosGuardados.find(u => u.email === email && u.contraseña === contraseña);
+        const usuarioEncontrado = usuariosGuardados.find(u => u.email === email && u.contraseña === contraseña);
 
         if (usuarioEncontrado) {
             inicioSesionExitoso(email);
-
         } else {
             mostrarAlerta(`<i class="bi bi-x-circle-fill"></i><br> Mmm... Ese Correo Electrónico no está bien o la Contraseña que ingresaste no es correcta !<br> <i class="bi bi-emoji-grimace"></i>`, "error");
             console.log("Los Datos ingresados son inválidos.");
 
-            emailInput.value = " ";
-            contraseñaInput.value = " ";
+            document.getElementById("emailIniciarSesion").value = "";
+            document.getElementById("contraseñaIniciarSesion").value = "";
         }
     }
+
+
 
     function inicioSesionExitoso(email) {
         mostrarAlerta(`<i class="bi bi-emoji-smile-upside-down"></i><br> Iniciaste tu Chocosesión con éxito !`, "success");
@@ -152,11 +146,13 @@ document.addEventListener("DOMContentLoaded", () => {
         ocultarFormulariosYMostrarFinalizarCompra();
     }
 
+
+
     function registrarse(event) {
         event.preventDefault();
 
-        let email = document.getElementById("emailRegistro").value;
-        let contraseña = document.getElementById("contraseñaRegistro").value;
+        const email = document.getElementById("emailRegistro").value.toLowerCase();
+        const contraseña = document.getElementById("contraseñaRegistro").value;
 
         const usuariosGuardados = JSON.parse(localStorage.getItem("usuarios")) || [];
         const usuarioExistente = usuariosGuardados.find(u => u.email === email);
@@ -164,7 +160,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (usuarioExistente) {
             mostrarAlerta(`<i class="bi bi-emoji-surprise"></i><br> Ops ! Ese Correo Electrónico ya está en uso.<br> <i class="bi bi-emoji-grimace"></i><br> Ingresá otro...`, "warning");
             console.log("Ingreso de Datos inválidos.");
-
         } else {
             usuariosGuardados.push({ email, contraseña });
 
@@ -177,11 +172,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+
+
     function ocultarFormulariosYMostrarFinalizarCompra() {
         const contenedor = document.getElementById("contenedorInicioSesionRegistro");
         contenedor.innerHTML = " ";
 
-        let botonFinalizarCompra = document.createElement("button");
+        const botonFinalizarCompra = document.createElement("button");
         botonFinalizarCompra.className = "botonFinalizarCompra";
         botonFinalizarCompra.textContent = "Finalizar Compra";
 
@@ -189,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         contenedor.appendChild(botonFinalizarCompra);
 
-        let botonSeguirComprando = document.createElement("button");
+        const botonSeguirComprando = document.createElement("button");
         botonSeguirComprando.className = "botonSeguirComprando";
         botonSeguirComprando.textContent = "Seguir Comprando";
 
@@ -210,6 +207,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
+
     function finalizarCompra() {
         mostrarAlerta(`<i class="bi bi-emoji-heart-eyes"></i><br> Gracias por confiar y comprar en Corazón de Chocolate !<br> <i class="bi bi-bag-heart-fill"></i><br> Te paso las formas e instrucciones de pago y entrega en el Correo Electrónico que mandamos a tu casilla de mail !<br> <i class="bi bi-envelope-heart"></i>`, "success");
         console.log("Compra Éxitosa.");
@@ -223,6 +222,8 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.removeItem("descuento");
         }, 5000);
     }
+
+
 
     function vaciarCarrito() {
         carritoGuardado.length = 0;

@@ -681,6 +681,22 @@ header .logo:hover {
   overflow: auto;
   z-index: 1000;
 }
+.contenedor_carrito .codigoDescuentoUsado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #d9cab3;
+  text-shadow: 1px 1px 1px #000000;
+  font-size: 1.3rem;
+  font-weight: 400;
+  text-align: center;
+}
+.contenedor_carrito .codigoDescuentoUsado i {
+  color: #bc8034;
+  font-size: 2rem;
+  text-shadow: 1px 1px 2px #000000;
+}
 .contenedor_carrito .vaciarCarritoBtn {
   color: #d9cab3;
   font-size: 1.1rem;
@@ -827,7 +843,8 @@ header .logo:hover {
   border: rgba(0, 0, 0, 0);
   color: #bc8034;
   text-shadow: 1px 1px 2px #000000;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
+  transition: color 0.4s ease-in-out;
 }
 .contenedor_carrito button i {
   color: #d9cab3;
@@ -842,6 +859,11 @@ header .logo:hover {
 .contenedor_carrito button i:hover {
   color: #bc8034;
   text-shadow: 1.5px -1.5px 2.5px #000000;
+  transition: all 0.2s ease-in-out;
+}
+.contenedor_carrito button:hover {
+  color: #d9cab3;
+  text-shadow: -1px -1px 2px #000000;
   transition: all 0.2s ease-in-out;
 }
 .contenedor_carrito hr {
@@ -937,6 +959,7 @@ header .logo:hover {
 .total_carrito {
   width: 300px;
   height: 200px;
+  margin-top: 2rem;
   padding: 1rem;
   background-color: #bc8034;
   border: solid 2px #d9cab3;
